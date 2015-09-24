@@ -8,6 +8,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="fragment_top_title">Top Fragment</string>
+    <string name="fragment_training_title">Training</string>
+    <string name="fragment_diet_title">Ernährung</string>
     
     <string-array name="drawer_titles">
         <item>Hauptseite</item>

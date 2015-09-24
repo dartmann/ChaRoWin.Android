@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,11 +39,9 @@ public class MainActivity extends Activity {
 //        setTitle(R.string.app_name);
 
         mTitles = getResources().getStringArray(R.array.drawer_titles);
-        for(String s : mTitles) {
-            Log.d("Title", s);
-        }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.drawer_list_view);
+
         // Set the adapter for the list view
         mDrawerListView.setAdapter(new ArrayAdapter<>(this,
                 R.layout.drawer_list_item, mTitles));
@@ -50,7 +49,8 @@ public class MainActivity extends Activity {
         mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
         if (getActionBar() != null) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+            //back button is removed by disabling this
+            getActionBar().setDisplayHomeAsUpEnabled(false);
             getActionBar().setHomeButtonEnabled(true);
         }
 

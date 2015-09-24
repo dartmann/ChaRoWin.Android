@@ -2,8 +2,13 @@
 
     <!-- Base application theme. -->
     <!-- Because we get a NP, the default theme ("Theme.AppCompat.Light.DarkActionBar") is replaced by: -->
+    <!-- @android:style/Theme.Holo.Light.DarkActionBar -->
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:button">@color/blue_material_theme</item>
     </style>
 
+    <color name="blue_material_theme">#2196f3</color>
+    <color name="primary">#457C50</color>
+    <color name="primaryDarker">#580C0C</color>
 </resources>

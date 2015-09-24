@@ -3,6 +3,7 @@
 .DS_Store
 /build
 /captures
+app.iml
 
 ##############################################
 # Android.gitignore
