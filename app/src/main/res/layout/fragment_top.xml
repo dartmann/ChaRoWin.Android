@@ -6,21 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- for knowledge -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/top_fragment_recyclerview"
+        android:id="@+id/fragment_top_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0px" />
 
-    <TextView
-        android:id="@+id/fragment_top_textview"
-        android:layout_below="@id/top_fragment_recyclerview"
-        android:text="@string/fragment_top_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <com.pkmmte.view.CircularImageView
-        android:id="@+id/fragment_top_imageview1"
-        android:layout_below="@id/fragment_top_textview"
+        android:id="@+id/fragment_top_imageview_training"
+        android:layout_below="@id/fragment_top_recyclerview"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/gymnast_max_big"
@@ -30,12 +24,13 @@
         app:border_width="2dp"
         app:selector="true"
         app:selector_color="@android:color/transparent"
-        app:selector_stroke_color="#FF835C"
+        app:selector_stroke_color="#EEEEEE"
         app:selector_stroke_width="2dp"
         app:shadow="true" />
 
     <com.pkmmte.view.CircularImageView
-        android:layout_below="@id/fragment_top_imageview1"
+        android:id="@+id/fragment_top_imageview_diet"
+        android:layout_below="@id/fragment_top_imageview_training"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/healthy_food_max_big"
@@ -45,7 +40,9 @@
         app:border_color="#EEEEEE"
         app:border_width="10dp"
         app:selector="true"
-        app:selector_color="#FF835C"
+        app:selector_color="@android:color/transparent"
+        app:selector_stroke_color="#EEEEEE"
+        app:selector_stroke_width="2dp"
         app:shadow="true" />
 
     <!--

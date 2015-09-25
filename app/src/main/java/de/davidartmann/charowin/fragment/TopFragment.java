@@ -18,28 +18,31 @@ import de.davidartmann.charowin.R;
  */
 public class TopFragment extends Fragment {
 
-    private CircularImageView mCircularImageView;
+    private CircularImageView mCircularImageViewTraining;
+    private CircularImageView mCircularImageViewDiet;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        //getView() returns the root view for the fragment and then call findViewById()
         View view = inflater.inflate(R.layout.fragment_top, container, false);
         if (view != null) {
-            mCircularImageView = (CircularImageView) view.findViewById(R.id.fragment_top_imageview1);
-
-            mCircularImageView.setOnClickListener(new View.OnClickListener() {
+            mCircularImageViewTraining = (CircularImageView) view.findViewById(R.id.fragment_top_imageview_training);
+            mCircularImageViewDiet = (CircularImageView) view.findViewById(R.id.fragment_top_imageview_diet);
+            mCircularImageViewTraining.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replaceFragment(new TrainingFragment());
                 }
             });
+            mCircularImageViewDiet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    replaceFragment(new DietFragment());
+                }
+            });
         } else {
-            Log.w("NP", "getView() returned null");
+            Log.w("TopFragment", "view was null");
         }
-
-//        return inflater.inflate(R.layout.fragment_top, container, false);
         return view;
     }
 
