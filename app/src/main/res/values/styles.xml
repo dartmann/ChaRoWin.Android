@@ -5,10 +5,13 @@
     <!-- @android:style/Theme.Holo.Light.DarkActionBar -->
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:button">@color/blue_material_theme</item>
+        <item name="android:button">@color/blue</item>
+        <!-- custom drawer_list_item activated color -->
+        <item name="android:activatedBackgroundIndicator">@drawable/drawer_list_selector</item>
     </style>
 
-    <color name="blue_material_theme">#2196f3</color>
+    <color name="orange">#FF5722</color>
+    <color name="blue">#2196f3</color>
     <color name="primary">#457C50</color>
     <color name="primaryDarker">#580C0C</color>
 </resources>

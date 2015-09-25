@@ -7,7 +7,11 @@
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
 
+    <!-- strings inside top fragment -->
     <string name="fragment_top_title">Top Fragment</string>
+    <string name="fragment_top_imageview_training">Training ImageView</string>
+    <string name="fragment_top_imageview_diet">Diet ImageView</string>
+
     <string name="fragment_training_title">Training</string>
     <string name="fragment_diet_title">Ernährung</string>
     

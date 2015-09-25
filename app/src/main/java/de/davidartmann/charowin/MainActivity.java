@@ -8,7 +8,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pkmmte.view.CircularImageView;
+
 import de.davidartmann.charowin.fragment.DietFragment;
+import de.davidartmann.charowin.fragment.TopFragment;
 import de.davidartmann.charowin.fragment.TrainingFragment;
 
 public class MainActivity extends Activity {
@@ -27,6 +29,7 @@ public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
     private ActionBarDrawerToggle mDrawerToggle;
+//    private RecyclerView mRecyclerView;
 
     private static final String LOG_WARN_MAIN_ACTIVITY = "LOG_WARN_MAIN_ACTIVITY";
     private static final String WARN_ACTIONBAR_NULL = "ActionBar in MainActivity was null";
@@ -41,6 +44,7 @@ public class MainActivity extends Activity {
         mTitles = getResources().getStringArray(R.array.drawer_titles);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.drawer_list_view);
+//        mRecyclerView = (RecyclerView) findViewById(R.id.topFragmentRecyclerViewList);
 
         // Set the adapter for the list view
         mDrawerListView.setAdapter(new ArrayAdapter<>(this,
@@ -81,6 +85,15 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
+        /*
+         * we get to that later...
+         *
+        mRecyclerView.setHasFixedSize(true);
+        //positions item views inside the row and determines when it is time to recycle the views
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        */
     }
 
     /**
@@ -131,12 +144,7 @@ public class MainActivity extends Activity {
         }
         setActionBarTitle(position);
         mDrawerListView.setItemChecked(position, true);
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.drawer_frame_layout, fragment)
-                .addToBackStack(null)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
+        replaceFragment(fragment);
         mDrawerLayout.closeDrawer(mDrawerListView);
     }
 
@@ -181,6 +189,19 @@ public class MainActivity extends Activity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * Helper method to call #getFragmentManager and replace a given Fragment
+     * @param fragment
+     */
+    private void replaceFragment(Fragment fragment) {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.drawer_frame_layout, fragment)
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
