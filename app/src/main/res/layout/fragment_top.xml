@@ -9,66 +9,17 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fragment_top_imageview_debug">
-    </ImageView>
+        android:id="@+id/fragment_top_imageview_debug"
+        />
 
-    <!--
-    <com.pkmmte.view.CircularImageView
-        android:id="@+id/fragment_top_imageview_training"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:src="@drawable/gymnast_max_big"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        app:border="true"
-        app:border_color="#EEEEEE"
-        app:border_width="2dp"
-        app:selector="true"
-        app:selector_color="@android:color/transparent"
-        app:selector_stroke_color="#EEEEEE"
-        app:selector_stroke_width="2dp"
-        app:shadow="true" />
-
-    <com.pkmmte.view.CircularImageView
-        android:id="@+id/fragment_top_imageview_diet"
-        android:layout_below="@id/fragment_top_imageview_training"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:src="@drawable/healthy_food_max_big"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        app:border="true"
-        app:border_color="#EEEEEE"
-        app:border_width="10dp"
-        app:selector="true"
-        app:selector_color="@android:color/transparent"
-        app:selector_stroke_color="#EEEEEE"
-        app:selector_stroke_width="2dp"
-        app:shadow="true" />
-
-
-    <ImageView
-        android:id="@+id/fragment_top_imageview1"
-        android:layout_below="@id/fragment_top_textview"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:scaleType="fitXY"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/fragment_training_title"
-        android:src="@drawable/gymnast_max"/>
-    -->
-
-    <!--
-    <ImageView
-        android:id="@+id/fragment_top_imageview2"
-        android:layout_below="@id/fragment_top_imageview1"
-        android:layout_marginTop="20dp"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:scaleType="fitXY"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/fragment_diet_title"
-        android:src="@drawable/healthy_food_max"/>
-        -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_top_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        />
 
 </RelativeLayout>

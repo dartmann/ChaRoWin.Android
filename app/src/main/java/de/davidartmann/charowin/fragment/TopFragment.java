@@ -2,28 +2,21 @@ package de.davidartmann.charowin.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.pkmmte.view.CircularImageView;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.davidartmann.charowin.R;
+import de.davidartmann.charowin.adapter.TopAdapter;
+import de.davidartmann.charowin.model.TopAdapterModel;
 
 /**
  * Created by David on 28.08.2015.
@@ -32,30 +25,32 @@ public class TopFragment extends Fragment {
 
     private static final String TOP_FRAGMENT = "TopFragment";
 
-    private CircularImageView mCircularImageViewTraining;
-    private CircularImageView mCircularImageViewDiet;
-    private ImageView imageView;
+    //TODO: instead of a recyclerview we create a fixed gui with the two "cards"
+    
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //TODO: debugging, delete tp when finished
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
         View view = inflater.inflate(R.layout.fragment_top, container, false);
         if (view != null) {
+            mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_top_recyclerview);
+            mRecyclerView.setHasFixedSize(true);
+            mLayoutManager = new LinearLayoutManager(view.getContext());
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            mAdapter = new TopAdapter(createTopAdapterModels());//TODO: debugging, change to real data when possible
+            mRecyclerView.setAdapter(mAdapter);
             /*
-            mCircularImageViewTraining = (CircularImageView) view.findViewById(R.id.fragment_top_imageview_training);
-            mCircularImageViewDiet = (CircularImageView) view.findViewById(R.id.fragment_top_imageview_diet);
-            */
-            //TODO: debugging
             imageView = (ImageView) view.findViewById(R.id.fragment_top_imageview_debug);
             Picasso.with(view.getContext()).setLoggingEnabled(true);
             Picasso.with(view.getContext())
                     .load("http://4.bp.blogspot.com/-a77bEtz0S48/USJ5cZL_ByI/AAAAAAAAFD8/LHJ_JWbYCOU/s1600/Arnold+Schwarzenegger+0.jpg")
                     .into(imageView);
 
-            /*
             mCircularImageViewTraining.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,6 +68,38 @@ public class TopFragment extends Fragment {
             Log.w(TOP_FRAGMENT, "view was null");
         }
         return view;
+    }
+
+    /**
+     * Helper method for creating the models for the recyclerview.
+     *
+     * @return List of TopAdapterModel
+     */
+    private List<TopAdapterModel> createTopAdapterModels() {
+        List<TopAdapterModel> topAdapterModels = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            TopAdapterModel topAdapterModel = new TopAdapterModel();;
+            switch (i) {
+                case 0:
+                    topAdapterModel.setTitle(getString(R.string.fragment_top_next_training_title));
+                    topAdapterModel.setTrainingOrMealName("Brust und Rücken");
+                    topAdapterModel.setTrainingOrMealDay("Montag");
+                    topAdapterModel.setAmountExercisesOrEnergyValue("5");
+                    topAdapterModel.setTimeSinceLastExercise("Vor 4 Stunden");
+                    topAdapterModel.setAverageTrainingsTime("60 Minuten");
+                    break;
+                case 1:
+                    topAdapterModel.setTitle(getString(R.string.fragment_top_next_meal_title));
+                    topAdapterModel.setTrainingOrMealName("Frühstück");
+                    topAdapterModel.setTrainingOrMealDay("Montag");
+                    topAdapterModel.setAmountExercisesOrEnergyValue("750 kCal");
+                    topAdapterModel.setTimeSinceLastExercise("");
+                    topAdapterModel.setAverageTrainingsTime("");
+                    break;
+            }
+            topAdapterModels.add(topAdapterModel);
+        }
+        return topAdapterModels;
     }
 
     /**

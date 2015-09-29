@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_training_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="4dp"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:id="@+id/fragment_top_cardview_linearlayout"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:dividerPadding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragment_top_cardview_linearlayout_textview_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nächstes Training"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:fadingEdge="vertical"
+            />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_textview_title"
+            android:layout_marginTop="5dp"
+            android:layout_height="0.2dp"
+            android:id="@+id/fragment_top_cardview_linearlayout_title_textview_separator"
+            android:visibility="visible"
+            android:background="@android:color/darker_gray"/>
+
+        <ImageView
+            android:id="@+id/fragment_top_cardview_linearlayout_imageview_moveverticalicon"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_title_textview_separator"
+            android:contentDescription="@string/fragment_training_cardlayout_exercise"
+            android:layout_height="150dp"
+            android:alpha="0.5"
+            android:paddingRight="10dp"
+            />
+
+        <TextView
+            android:id="@+id/fragment_top_cardview_linearlayout_textview_trainingname"
+            android:text="trainingname"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_title_textview_separator"
+            android:layout_toEndOf=
+                "@id/fragment_top_cardview_linearlayout_imageview_moveverticalicon"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_height="50dp"
+            />
+
+        <TextView
+            android:id="@+id/fragment_top_cardview_linearlayout_textview_trainingday"
+            android:text="trainingday"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_textview_trainingname"
+            android:layout_toEndOf=
+                "@id/fragment_top_cardview_linearlayout_imageview_moveverticalicon"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_height="50dp"
+            />
+
+        <TextView
+            android:id="@+id/fragment_top_cardview_linearlayout_textview_amountexercices"
+            android:text="# exercises"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_textview_trainingday"
+            android:layout_toEndOf=
+                "@id/fragment_top_cardview_linearlayout_imageview_moveverticalicon"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_height="50dp"
+            />
+
+        <ImageView
+            android:id="@+id/fragment_top_cardview_linearlayout_imageview_cardsettings"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_menu_black_48dp"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_title_textview_separator"
+            android:layout_gravity="center_horizontal"
+            android:layout_toEndOf="@id/fragment_top_cardview_linearlayout_textview_trainingname"
+            android:contentDescription="@string/fragment_training_cardlayout_exercise"
+            android:layout_height="50dp"
+            android:alpha="0.5"
+            android:paddingStart="100dp"
+            />
+
+        <TextView
+            android:id="@+id/fragment_top_cardview_linearlayout_textview_lastexercisedate"
+            android:text="Vor 36 Stunden"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_textview_trainingname"
+            android:layout_toEndOf="@id/fragment_top_cardview_linearlayout_textview_trainingday"
+            android:textSize="16sp"
+            android:paddingStart="70dp"
+            android:gravity="center"
+            android:layout_height="50dp"
+            />
+
+        <ImageView
+            android:id="@+id/fragment_top_cardview_linearlayout_imageview_averagetrainingtimeicon"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_alarm_black_24dp"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_textview_lastexercisedate"
+            android:layout_gravity="center_horizontal"
+            android:layout_toEndOf="@id/fragment_top_cardview_linearlayout_textview_trainingname"
+            android:contentDescription="@string/fragment_training_cardlayout_exercise"
+            android:layout_height="50dp"
+            android:alpha="0.5"
+            android:paddingStart="30dp"
+            />
+
+        <TextView
+            android:id="@+id/fragment_top_cardview_linearlayout_textview_averagetrainingtimetext"
+            android:text="2 Stunden"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/fragment_top_cardview_linearlayout_textview_lastexercisedate"
+            android:layout_toEndOf=
+                "@id/fragment_top_cardview_linearlayout_imageview_averagetrainingtimeicon"
+            android:textSize="16sp"
+            android:paddingStart="10dp"
+            android:gravity="center"
+            android:layout_height="50dp"
+            />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

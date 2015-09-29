@@ -20,6 +20,8 @@
     <string name="fragment_top_title">Top Fragment</string>
     <string name="fragment_top_imageview_training">Training ImageView</string>
     <string name="fragment_top_imageview_diet">Diet ImageView</string>
+    <string name="fragment_top_next_training_title">Nächstes Training</string>
+    <string name="fragment_top_next_meal_title">Nächste Mahlzeit</string>
 
     <string name="fragment_training_title">Training</string>
     <string name="fragment_training_cardview_imageview">CardView Image</string>
