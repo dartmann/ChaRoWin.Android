@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="?android:attr/activatedBackgroundIndicator"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:padding="10dp">
+
+    <com.pkmmte.view.CircularImageView
+        android:id="@+id/drawer_list_item_test_firstitem_circularimageview"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:border="true"
+        app:border_color="#EEEEEE"
+        app:border_width="2dp"
+        app:selector="true"
+        app:selector_color="@android:color/transparent"
+        app:selector_stroke_color="#EEEEEE"
+        app:selector_stroke_width="2dp"
+        app:shadow="true" />
+
+    <TextView
+        android:id="@+id/drawer_list_item_test_firstitem_textview_userdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/drawer_list_item_test_firstitem_circularimageview"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+
+    <ImageView
+        android:id="@+id/drawer_list_item_test_firstitem_imageview_sync"
+        android:layout_below="@id/drawer_list_item_test_firstitem_circularimageview"
+        android:contentDescription="@string/drawer_list_item_content_description"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp" />
+
+    <TextView
+        android:id="@+id/drawer_list_item_test_firstitem_textview_last_sync"
+        android:layout_below="@id/drawer_list_item_test_firstitem_circularimageview"
+        android:layout_toEndOf="@id/drawer_list_item_test_firstitem_imageview_sync"
+        android:textSize="12sp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

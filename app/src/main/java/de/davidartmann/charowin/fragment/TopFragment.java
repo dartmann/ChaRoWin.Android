@@ -2,14 +2,26 @@ package de.davidartmann.charowin.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.pkmmte.view.CircularImageView;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import de.davidartmann.charowin.R;
 
@@ -18,16 +30,31 @@ import de.davidartmann.charowin.R;
  */
 public class TopFragment extends Fragment {
 
+    private static final String TOP_FRAGMENT = "TopFragment";
+
     private CircularImageView mCircularImageViewTraining;
     private CircularImageView mCircularImageViewDiet;
+    private ImageView imageView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         View view = inflater.inflate(R.layout.fragment_top, container, false);
         if (view != null) {
+            /*
             mCircularImageViewTraining = (CircularImageView) view.findViewById(R.id.fragment_top_imageview_training);
             mCircularImageViewDiet = (CircularImageView) view.findViewById(R.id.fragment_top_imageview_diet);
+            */
+            //TODO: debugging
+            imageView = (ImageView) view.findViewById(R.id.fragment_top_imageview_debug);
+            Picasso.with(view.getContext()).setLoggingEnabled(true);
+            Picasso.with(view.getContext())
+                    .load("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Stonehenge%2C_Salisbury_retouched.jpg/1024px-Stonehenge%2C_Salisbury_retouched.jpg")
+                    .into(imageView);
+
+            /*
             mCircularImageViewTraining.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -40,8 +67,9 @@ public class TopFragment extends Fragment {
                     replaceFragment(new DietFragment());
                 }
             });
+            */
         } else {
-            Log.w("TopFragment", "view was null");
+            Log.w(TOP_FRAGMENT, "view was null");
         }
         return view;
     }

@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">Charowin</string>
 
+    <!-- drawer relevant strings -->
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
+    <string name="drawer_list_item_content_description">Drawer List Item</string>
+    <string-array name="drawer_list_item_titles">
+        <item>DrawerHeader</item>
+        <item>Hauptseite</item>
+        <item>Training</item>
+        <item>Ernährung</item>
+        <item>Einstellungen</item>
+    </string-array>
 
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
@@ -13,12 +22,11 @@
     <string name="fragment_top_imageview_diet">Diet ImageView</string>
 
     <string name="fragment_training_title">Training</string>
+    <string name="fragment_training_cardview_imageview">CardView Image</string>
+    <string name="fragment_training_cardlayout_exercise">Übung</string>
+    <string name="fragment_training_cardlayout_exercise_name">Name</string>
+    <string name="fragment_training_cardlayout_exercise_muscels">Muskeln</string>
+
     <string name="fragment_diet_title">Ernährung</string>
-    
-    <string-array name="drawer_titles">
-        <item>Hauptseite</item>
-        <item>Training</item>
-        <item>Ernährung</item>
-        <item>Einstellungen</item>
-    </string-array>
+
 </resources>

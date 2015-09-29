@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- for knowledge -->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_top_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="0px" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_top_imageview_debug">
+    </ImageView>
 
+    <!--
     <com.pkmmte.view.CircularImageView
         android:id="@+id/fragment_top_imageview_training"
-        android:layout_below="@id/fragment_top_recyclerview"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/gymnast_max_big"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
         app:border="true"
         app:border_color="#EEEEEE"
         app:border_width="2dp"
@@ -35,7 +36,7 @@
         android:layout_height="250dp"
         android:src="@drawable/healthy_food_max_big"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         app:border="true"
         app:border_color="#EEEEEE"
         app:border_width="10dp"
@@ -45,7 +46,7 @@
         app:selector_stroke_width="2dp"
         app:shadow="true" />
 
-    <!--
+
     <ImageView
         android:id="@+id/fragment_top_imageview1"
         android:layout_below="@id/fragment_top_textview"

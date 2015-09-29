@@ -13,12 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.pkmmte.view.CircularImageView;
+import java.util.ArrayList;
+import java.util.List;
 
+import de.davidartmann.charowin.adapter.DrawerAdapter;
+import de.davidartmann.charowin.adapter.model.DrawerItem;
 import de.davidartmann.charowin.fragment.DietFragment;
 import de.davidartmann.charowin.fragment.TopFragment;
 import de.davidartmann.charowin.fragment.TrainingFragment;
@@ -30,25 +32,27 @@ public class MainActivity extends Activity {
     private ListView mDrawerListView;
     private ActionBarDrawerToggle mDrawerToggle;
 //    private RecyclerView mRecyclerView;
+    private List<DrawerItem> drawerItems;
 
-    private static final String LOG_WARN_MAIN_ACTIVITY = "LOG_WARN_MAIN_ACTIVITY";
-    private static final String WARN_ACTIONBAR_NULL = "ActionBar in MainActivity was null";
+    private static final String MAIN_ACTIVITY = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        setTitle(R.string.app_name);
+        mTitles = getResources().getStringArray(R.array.drawer_list_item_titles);
+        drawerItems = createDrawerItems();
 
-        mTitles = getResources().getStringArray(R.array.drawer_titles);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.drawer_list_view);
 //        mRecyclerView = (RecyclerView) findViewById(R.id.topFragmentRecyclerViewList);
 
         // Set the adapter for the list view
-        mDrawerListView.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, mTitles));
+        /*mDrawerListView.setAdapter(new ArrayAdapter<>(this,
+                R.layout.drawer_list_item, mTitles));*/
+        mDrawerListView.setAdapter(new DrawerAdapter(this,
+                R.layout.drawer_list_item_test, drawerItems));
         // Set the list's click listener
         mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -113,7 +117,7 @@ public class MainActivity extends Activity {
         if (actionBar != null) {
             actionBar.setTitle(title);
         } else {
-            Log.w(LOG_WARN_MAIN_ACTIVITY, WARN_ACTIONBAR_NULL);
+            Log.w(MAIN_ACTIVITY, "ActionBar in MainActivity was null");
         }
     }
 
@@ -193,7 +197,7 @@ public class MainActivity extends Activity {
 
     /**
      * Helper method to call #getFragmentManager and replace a given Fragment
-     * @param fragment
+     * @param fragment the Fragment which will be replacing the actual
      */
     private void replaceFragment(Fragment fragment) {
         getFragmentManager()
@@ -211,5 +215,38 @@ public class MainActivity extends Activity {
             selectItem(position);
             setActionBarTitle(position);
         }
+    }
+
+    /**
+     * Helper method to create the static DrawerItems
+     *
+     * @return List of {@link DrawerItem} entries for the NavigationDrawer
+     */
+    private List<DrawerItem> createDrawerItems() {
+        List<DrawerItem> drawerItems = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            DrawerItem drawerItem = null;
+            switch (i) {
+                case 0:
+                    drawerItem = new DrawerItem(R.drawable.ic_person_black_48dp, mTitles[i]);
+                    break;
+                case 1:
+                    drawerItem = new DrawerItem(R.drawable.ic_home_black_24dp, mTitles[i]);
+                    break;
+                case 2:
+                    drawerItem = new DrawerItem(R.drawable.ic_flash_on_black_24dp, mTitles[i]);
+                    break;
+                case 3:
+                    drawerItem = new DrawerItem(R.drawable.ic_local_dining_black_24dp, mTitles[i]);
+                    break;
+                case 4:
+                    drawerItem = new DrawerItem(R.drawable.ic_settings_black_24dp, mTitles[i]);
+                    break;
+                default:
+                    Log.e(MAIN_ACTIVITY, "Default branch in createDrawerItems()");
+            }
+            drawerItems.add(drawerItem);
+        }
+        return drawerItems;
     }
 }
