@@ -39,6 +39,7 @@ public class TopFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //TODO: debugging, delete tp when finished
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         View view = inflater.inflate(R.layout.fragment_top, container, false);
@@ -51,7 +52,7 @@ public class TopFragment extends Fragment {
             imageView = (ImageView) view.findViewById(R.id.fragment_top_imageview_debug);
             Picasso.with(view.getContext()).setLoggingEnabled(true);
             Picasso.with(view.getContext())
-                    .load("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Stonehenge%2C_Salisbury_retouched.jpg/1024px-Stonehenge%2C_Salisbury_retouched.jpg")
+                    .load("http://4.bp.blogspot.com/-a77bEtz0S48/USJ5cZL_ByI/AAAAAAAAFD8/LHJ_JWbYCOU/s1600/Arnold+Schwarzenegger+0.jpg")
                     .into(imageView);
 
             /*

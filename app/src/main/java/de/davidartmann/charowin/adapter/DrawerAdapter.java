@@ -56,14 +56,14 @@ public class DrawerAdapter extends ArrayAdapter<DrawerItem> {
             CircularImageView circularImageView =
                     (CircularImageView) view.findViewById(
                             R.id.drawer_list_item_test_firstitem_circularimageview);
-            TextView textView =
+            TextView drawerHeaderUserInfoTextView =
                     (TextView) view.findViewById(R.id.drawer_list_item_test_firstitem_textview_userdata);
             ImageView imageView =
                     (ImageView) view.findViewById(R.id.drawer_list_item_test_firstitem_imageview_sync);
             TextView lastSyncTextView =
                     (TextView) view.findViewById(R.id.drawer_list_item_test_firstitem_textview_last_sync);
             circularImageView.setImageResource(drawerItems.get(position).getIcon());
-            textView.setText(drawerItems.get(position).getText());//TODO: this should be the username later...
+            drawerHeaderUserInfoTextView.setText(drawerItems.get(position).getText());//TODO: this should be the username later...
             imageView.setImageResource(R.drawable.ic_autorenew_black_48dp);
             Date mockLastSyncDate = new Date();
             Log.d(DRAWER_ADAPTER, String.valueOf(mockLastSyncDate.getTime()));
