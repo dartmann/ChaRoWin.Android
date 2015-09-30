@@ -4,14 +4,30 @@
     <!-- Because we get a NP, the default theme ("Theme.AppCompat.Light.DarkActionBar") is replaced by: -->
     <!-- @android:style/Theme.Holo.Light.DarkActionBar -->
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <!-- Main theme colors -->
+        <!--   your app branding color for the app bar -->
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="android:colorBackground">@color/primaryDarker</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="android:editTextColor">@color/orange</item>
+        <item name="android:windowBackground">@android:color/white</item>
         <!-- Customize your theme here. -->
         <item name="android:button">@color/blue</item>
         <!-- custom drawer_list_item activated color -->
         <item name="android:activatedBackgroundIndicator">@drawable/drawer_list_selector</item>
     </style>
+    <style name="TopFragmentStaticTextView">
+        <item name="android:textSize">18sp</item>
+    </style>
 
     <color name="orange">#FF5722</color>
+    <color name="orange_dark">#E65122</color>
+    <color name="orange_light">#FF835C</color>
     <color name="blue">#2196f3</color>
-    <color name="primary">#457C50</color>
-    <color name="primaryDarker">#580C0C</color>
+    <color name="primary">#822700</color>
+    <color name="primaryDarker">#571b01</color>
+    <color name="textColorPrimary">#000000</color>
+    <color name="rose">#ff9e75</color>
+    <color name="rose_light">#fcdccf</color>
 </resources>

@@ -26,7 +26,7 @@ public class TopFragment extends Fragment {
     private static final String TOP_FRAGMENT = "TopFragment";
 
     //TODO: instead of a recyclerview we create a fixed gui with the two "cards"
-    
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
