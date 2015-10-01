@@ -17,10 +17,8 @@
         <!-- custom drawer_list_item activated color -->
         <item name="android:activatedBackgroundIndicator">@drawable/drawer_list_selector</item>
     </style>
-    <style name="TopFragmentStaticTextView">
-        <item name="android:textSize">18sp</item>
-    </style>
 
+    <!-- change app style to poison green -->
     <color name="orange">#FF5722</color>
     <color name="orange_dark">#E65122</color>
     <color name="orange_light">#FF835C</color>

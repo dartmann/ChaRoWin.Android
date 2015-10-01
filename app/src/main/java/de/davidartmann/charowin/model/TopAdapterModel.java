@@ -1,7 +1,9 @@
 package de.davidartmann.charowin.model;
 
+import de.davidartmann.charowin.adapter.TopAdapter_OLD;
+
 /**
- * Model class for the {@link de.davidartmann.charowin.adapter.TopAdapter}
+ * Model class for the {@link TopAdapter_OLD}
  *
  * Created by David on 29.09.2015.
  */

@@ -66,7 +66,7 @@ public class DrawerAdapter extends ArrayAdapter<DrawerItem> {
             drawerHeaderUserInfoTextView.setText(drawerItems.get(position).getText());//TODO: this should be the username later...
             imageView.setImageResource(R.drawable.ic_autorenew_black_48dp);
             Date mockLastSyncDate = new Date();
-            Log.d(DRAWER_ADAPTER, String.valueOf(mockLastSyncDate.getTime()));
+//            Log.d(DRAWER_ADAPTER, String.valueOf(mockLastSyncDate.getTime()));
             lastSyncTextView.setText("Vor "+(mockLastSyncDate.getTime()%365)%24+" Stunden");
         } else {
             view = LayoutInflater

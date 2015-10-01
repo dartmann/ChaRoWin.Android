@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/rose_light"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".TopFragment">
+    <!-- TODO: replace all fix strings with the constants from xml -->
 
     <RelativeLayout
         android:id="@+id/fragment_top_static_relativelayout_training"
@@ -29,11 +32,10 @@
                 android:textStyle="bold"
                 />
             <ImageView
-                android:id="@+id/fragment_top_cardview_linearlayout_imageview_cardsettings_new"
+                android:id="@+id/fragment_top_cardview_linearlayout_imageview_cardsettings"
                 android:layout_width="40dp"
                 android:src="@drawable/ic_menu_black_48dp"
                 android:layout_alignParentEnd="true"
-                android:contentDescription="@string/fragment_training_cardlayout_exercise"
                 android:layout_height="40dp"
                 android:alpha="0.5"
                 />
@@ -78,15 +80,29 @@
                     android:gravity="center_vertical"
                     android:layout_height="50dp"
                     />
-                <TextView
-                    android:id=
-                        "@+id/fragment_top_static_relativelayout_training_textview_amountexercices"
-                    android:text="6 Übungen"
+                <LinearLayout
                     android:layout_width="fill_parent"
-                    android:textSize="@dimen/abc_text_size_medium_material"
-                    android:gravity="center_vertical"
-                    android:layout_height="50dp"
-                    />
+                    android:layout_height="50dp">
+                    <TextView
+                        android:id=
+                            "@+id/fragment_top_static_relativelayout_training_textview_numberofexercices"
+                        android:text="6"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/abc_text_size_medium_material"
+                        android:gravity="center_vertical"
+                        android:layout_height="50dp"
+                        />
+                    <TextView
+                        android:text="Übungen"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:layout_width="fill_parent"
+                        android:textSize="@dimen/abc_text_size_medium_material"
+                        android:gravity="center_vertical"
+                        android:layout_height="50dp"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -105,6 +121,7 @@
                         android:alpha="0.5"
                         />
                     <TextView
+                        android:id="@+id/fragment_top_static_relativelayout_training_textview_lasttimeexercised"
                         android:text="Vor 36 Stunden"
                         android:layout_width="wrap_content"
                         android:textSize="@dimen/abc_text_size_body_1_material"
@@ -125,6 +142,7 @@
                         android:alpha="0.5"
                         />
                     <TextView
+                        android:id="@+id/fragment_top_static_relativelayout_training_textview_trainingtime"
                         android:text="2 Stunden"
                         android:layout_width="wrap_content"
                         android:textSize="@dimen/abc_text_size_body_1_material"
@@ -161,11 +179,10 @@
                 android:textStyle="bold"
                 />
             <ImageView
-                android:id="@+id/fragment_top_static_relativelayout_meal_relativelayout_cardsettings_new"
+                android:id="@+id/fragment_top_static_relativelayout_meal_relativelayout_cardsettings"
                 android:layout_width="40dp"
                 android:src="@drawable/ic_menu_black_48dp"
                 android:layout_alignParentEnd="true"
-                android:contentDescription="@string/fragment_training_cardlayout_exercise"
                 android:layout_height="40dp"
                 android:alpha="0.5"
                 />
@@ -194,31 +211,57 @@
                 >
                 <TextView
                     android:id=
-                        "@+id/fragment_top_static_relativelayout_meal_textview_trainingname"
+                        "@+id/fragment_top_static_relativelayout_meal_textview_mealname"
                     android:text="Frühstück"
                     android:layout_width="fill_parent"
                     android:textSize="@dimen/abc_text_size_medium_material"
                     android:gravity="center_vertical"
                     android:layout_height="50dp"
                     />
-                <TextView
-                    android:id=
-                        "@+id/fragment_top_static_relativelayout_meal_textview_trainingday"
-                    android:text="08:00 Uhr"
+                <LinearLayout
                     android:layout_width="fill_parent"
-                    android:textSize="@dimen/abc_text_size_medium_material"
-                    android:gravity="center_vertical"
-                    android:layout_height="50dp"
-                    />
-                <TextView
-                    android:id=
-                        "@+id/fragment_top_static_relativelayout_meal_textview_amountexercices"
-                    android:text="600 kCal"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:id=
+                            "@+id/fragment_top_static_relativelayout_meal_textview_mealtime"
+                        android:text="08:00"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/abc_text_size_medium_material"
+                        android:gravity="center_vertical"
+                        android:layout_height="50dp"
+                        />
+                    <TextView
+                        android:text="Uhr"
+                        android:layout_width="fill_parent"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:textSize="@dimen/abc_text_size_medium_material"
+                        android:gravity="center_vertical"
+                        android:layout_height="50dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="fill_parent"
-                    android:textSize="@dimen/abc_text_size_medium_material"
-                    android:gravity="center_vertical"
-                    android:layout_height="50dp"
-                    />
+                    android:layout_height="50dp">
+                    <TextView
+                        android:id=
+                            "@+id/fragment_top_static_relativelayout_meal_textview_energysum"
+                        android:text="600"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/abc_text_size_medium_material"
+                        android:gravity="center_vertical"
+                        android:layout_height="50dp"
+                        />
+                    <TextView
+                        android:text="kCal"
+                        android:layout_width="fill_parent"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:textSize="@dimen/abc_text_size_medium_material"
+                        android:gravity="center_vertical"
+                        android:layout_height="50dp"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -227,7 +270,7 @@
                 android:layout_height="match_parent"
                 >
                 <ListView
-                    android:id="@+id/fragment_top_static_relativelayout_meal_listview"
+                    android:id="@+id/fragment_top_static_relativelayout_meal_listview_meals"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </ListView>

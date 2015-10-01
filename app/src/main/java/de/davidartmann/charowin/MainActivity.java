@@ -24,33 +24,30 @@ import de.davidartmann.charowin.adapter.model.DrawerItem;
 import de.davidartmann.charowin.fragment.DietFragment;
 import de.davidartmann.charowin.fragment.TopFragment;
 import de.davidartmann.charowin.fragment.TrainingFragment;
+import de.davidartmann.charowin.fragment.TrainingFragmentOverview;
 
 public class MainActivity extends Activity {
+
+    private static final String MAIN_ACTIVITY = "MainActivity";
 
     private String[] mTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
     private ActionBarDrawerToggle mDrawerToggle;
-//    private RecyclerView mRecyclerView;
-    private List<DrawerItem> drawerItems;
-
-    private static final String MAIN_ACTIVITY = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        List<DrawerItem> drawerItems;
 
         mTitles = getResources().getStringArray(R.array.drawer_list_item_titles);
         drawerItems = createDrawerItems();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.drawer_list_view);
-//        mRecyclerView = (RecyclerView) findViewById(R.id.topFragmentRecyclerViewList);
-
-        // Set the adapter for the list view
-        /*mDrawerListView.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, mTitles));*/
         mDrawerListView.setAdapter(new DrawerAdapter(this,
                 R.layout.drawer_list_item_test, drawerItems));
         // Set the list's click listener
@@ -89,15 +86,6 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
-
-        /*
-         * we get to that later...
-         *
-        mRecyclerView.setHasFixedSize(true);
-        //positions item views inside the row and determines when it is time to recycle the views
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        */
     }
 
     /**
@@ -138,10 +126,18 @@ public class MainActivity extends Activity {
         Fragment fragment;
         switch (position) {
             case 1:
-                fragment = new TrainingFragment();
+                fragment = new TopFragment();
                 break;
             case 2:
+//                fragment = new TrainingFragment();
+                fragment = new TrainingFragmentOverview();
+                break;
+            case 3:
                 fragment = new DietFragment();
+                break;
+            case 4:
+                fragment = new TopFragment();
+                Toast.makeText(this, "settings soon to come", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 fragment = new TopFragment();

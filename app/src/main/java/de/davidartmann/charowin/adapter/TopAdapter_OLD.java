@@ -19,11 +19,11 @@ import de.davidartmann.charowin.model.TopAdapterModel;
  *
  * Created by David on 29.09.2015.
  */
-public class TopAdapter extends RecyclerView.Adapter<TopAdapter.TopViewHolder> {
+public class TopAdapter_OLD extends RecyclerView.Adapter<TopAdapter_OLD.TopViewHolder> {
 
     private List<TopAdapterModel> topAdapterModels;
 
-    public TopAdapter(List<TopAdapterModel> topAdapterModels) {
+    public TopAdapter_OLD(List<TopAdapterModel> topAdapterModels) {
         this.topAdapterModels = topAdapterModels;
     }
 

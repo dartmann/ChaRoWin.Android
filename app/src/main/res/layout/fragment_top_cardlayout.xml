@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- deprecated -->
 <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,7 +45,6 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal"
             android:layout_below="@id/fragment_top_cardview_linearlayout_title_textview_separator"
-            android:contentDescription="@string/fragment_training_cardlayout_exercise"
             android:layout_height="150dp"
             android:alpha="0.5"
             android:paddingRight="10dp"
@@ -93,7 +93,6 @@
             android:layout_below="@id/fragment_top_cardview_linearlayout_title_textview_separator"
             android:layout_gravity="center_horizontal"
             android:layout_toEndOf="@id/fragment_top_cardview_linearlayout_textview_trainingname"
-            android:contentDescription="@string/fragment_training_cardlayout_exercise"
             android:layout_height="50dp"
             android:alpha="0.5"
             android:paddingStart="100dp"
@@ -118,7 +117,6 @@
             android:layout_below="@id/fragment_top_cardview_linearlayout_textview_lastexercisedate"
             android:layout_gravity="center_horizontal"
             android:layout_toEndOf="@id/fragment_top_cardview_linearlayout_textview_trainingname"
-            android:contentDescription="@string/fragment_training_cardlayout_exercise"
             android:layout_height="50dp"
             android:alpha="0.5"
             android:paddingStart="30dp"
