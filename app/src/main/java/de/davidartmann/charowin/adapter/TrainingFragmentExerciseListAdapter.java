@@ -14,28 +14,36 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.model.Exercise;
+import de.davidartmann.charowin.adapter.model.Exercise;
 
 /**
+ * Adapter class for the list of exercise of a trainingsplan.
+ *
  * Created by David on 26.09.2015.
  */
-public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.TrainingViewHolder> {
+public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<TrainingFragmentExerciseListAdapter.ViewHolder> {
 
     private List<Exercise> exercises;
 
-    public TrainingAdapter(List<Exercise> exercises) {
+    public TrainingFragmentExerciseListAdapter(List<Exercise> exercises) {
         this.exercises = exercises;
     }
 
-    public static class TrainingViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-        public ImageView mImageView;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView mImageViewExerciseIcon;
+        public TextView mTextViewExerciseName;
+        public TextView mTextViewSets;
+        public TextView mTextViewReps;
+        public TextView mTextViewRestTime;
         private Context context;
 
-        public TrainingViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
-            mImageView = (ImageView) view.findViewById(R.id.fragment_training_cardview_linearlayout_imageview);
-            mTextView = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview);
+            mImageViewExerciseIcon = (ImageView) view.findViewById(R.id.fragment_training_cardview_linearlayout_imageview_exerciseicon);
+            mTextViewExerciseName = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_exercisename);
+            mTextViewSets = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_sets);
+            mTextViewReps = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_reps);
+            mTextViewRestTime = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_resttime);
             context = view.getContext();
         }
     }
@@ -60,21 +68,22 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Traini
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(TrainingViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
-        holder.mTextView.setText(exercise.getName());
-        //TODO
-//        Picasso.with(holder.context).setLoggingEnabled(true);
-//        Picasso.with(holder.context)
-//                .load(exercise.getImageUrl())
-//                .placeholder(android.R.drawable.ic_menu_add)
-//                .error(android.R.drawable.ic_menu_delete)
-//                .into(holder.mImageView);
+        Picasso.with(holder.context)
+                .load(exercise.getImageUrl())
+                .placeholder(android.R.drawable.ic_menu_add)
+                .error(android.R.drawable.ic_menu_delete)
+                .into(holder.mImageViewExerciseIcon);
+        holder.mTextViewExerciseName.setText(exercise.getExerciseName());
+        holder.mTextViewSets.setText(exercise.getSets());
+        holder.mTextViewReps.setText(exercise.getReps());
+        holder.mTextViewRestTime.setText(exercise.getRestTime());
     }
 
     /**
      * Called when RecyclerView needs a new
-     * {@link de.davidartmann.charowin.adapter.TrainingAdapter.TrainingViewHolder}
+     * {@link ViewHolder}
      * of the given type to represent an item.
      * <p/>
      * This new ViewHolder should be constructed with a new View that can represent the items
@@ -82,7 +91,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Traini
      * layout file.
      * <p/>
      * The new ViewHolder will be used to display items of the adapter using
-     * {@link #onBindViewHolder(TrainingViewHolder, int)}. Since it will be re-used to display different
+     * {@link #onBindViewHolder(ViewHolder, int)}. Since it will be re-used to display different
      * items in the data set, it is a good idea to cache references to sub views of the View to
      * avoid unnecessary {@link View#findViewById(int)} calls.
      *
@@ -93,13 +102,13 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Traini
      * @see #getItemViewType(int)
      */
     @Override
-    public TrainingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_training_cardlayout, parent, false);
+                .inflate(R.layout.fragment_training_exerciselist_cardlayout, parent, false);
         // set the view's size, margins, paddings and layout parameters...
-        return new TrainingViewHolder(view);
+        return new ViewHolder(view);
     }
 
     /**

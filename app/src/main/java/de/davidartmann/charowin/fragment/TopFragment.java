@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.model.TopAdapterModel;
 
 /**
  * FragmentView which is the main entrance point to the app.
@@ -133,7 +132,7 @@ public class TopFragment extends Fragment {
             mCircularImageViewTraining.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    replaceFragment(new TrainingFragment());
+                    replaceFragment(new TrainingFragmentExerciseList());
                 }
             });
             mCircularImageViewDiet.setOnClickListener(new View.OnClickListener() {
@@ -160,50 +159,5 @@ public class TopFragment extends Fragment {
             meals.add("Meal "+i);
         }
         return meals;
-    }
-
-    /**
-     * Helper method for creating the models for the recyclerview.
-     *
-     * @return List of TopAdapterModel
-     */
-    private List<TopAdapterModel> createTopAdapterModels() {
-        List<TopAdapterModel> topAdapterModels = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            TopAdapterModel topAdapterModel = new TopAdapterModel();;
-            switch (i) {
-                case 0:
-                    topAdapterModel.setTitle(getString(R.string.fragment_top_next_training_title));
-                    topAdapterModel.setTrainingOrMealName("Brust und Rücken");
-                    topAdapterModel.setTrainingOrMealDay("Montag");
-                    topAdapterModel.setAmountExercisesOrEnergyValue("5");
-                    topAdapterModel.setTimeSinceLastExercise("Vor 4 Stunden");
-                    topAdapterModel.setAverageTrainingsTime("60 Minuten");
-                    break;
-                case 1:
-                    topAdapterModel.setTitle(getString(R.string.fragment_top_next_meal_title));
-                    topAdapterModel.setTrainingOrMealName("Frühstück");
-                    topAdapterModel.setTrainingOrMealDay("Montag");
-                    topAdapterModel.setAmountExercisesOrEnergyValue("750 kCal");
-                    topAdapterModel.setTimeSinceLastExercise("");
-                    topAdapterModel.setAverageTrainingsTime("");
-                    break;
-            }
-            topAdapterModels.add(topAdapterModel);
-        }
-        return topAdapterModels;
-    }
-
-    /**
-     * Helper method to call #getFragmentManager and replace a given Fragment
-     * @param fragment
-     */
-    private void replaceFragment(Fragment fragment) {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.drawer_frame_layout, fragment)
-                .addToBackStack(null)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();
     }
 }

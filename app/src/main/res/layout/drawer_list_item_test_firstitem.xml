@@ -41,7 +41,6 @@
     <ImageView
         android:id="@+id/drawer_list_item_test_firstitem_imageview_sync"
         android:layout_below="@id/drawer_list_item_test_firstitem_circularimageview"
-        android:contentDescription="@string/drawer_list_item_content_description"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
