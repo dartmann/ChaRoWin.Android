@@ -1,7 +1,6 @@
 package de.davidartmann.charowin.fragment;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -113,7 +112,7 @@ public class TopFragment extends Fragment {
             //TODO: maybe later the list gets more complex (adding more infos e.g. weight,
             // energy of single items), so we have to change the adapter
             mListViewMeals.setAdapter(new ArrayAdapter<String>(
-                    view.getContext(), R.layout.fragment_top_static_meal_listviewitem, createMeals()));
+                    view.getContext(), R.layout.fragment_top_static_meal_listitem, createMeals()));
             /*
             mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_top_recyclerview);
             mRecyclerView.setHasFixedSize(true);

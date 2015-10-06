@@ -29,5 +29,6 @@ public class TrainingActivityOverviewNew extends FragmentActivity {
         mTitles = getResources().getStringArray(R.array.fragment_training_overview_titles);
         mViewPager = (ViewPager) findViewById(R.id.fragment_training_overview_new_viewpager);
         mViewPager.setAdapter(new TrainingFragmentOverviewNewAdapter(getSupportFragmentManager(), mTitles.length, mTitles));
+        setTitle(mTitles[0]);
     }
 }

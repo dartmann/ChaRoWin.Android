@@ -36,7 +36,6 @@ public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
     private ActionBarDrawerToggle mDrawerToggle;
-    private Boolean isBackButtonPressedTwice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        isBackButtonPressedTwice = false;
         List<DrawerItem> drawerItems;
 
         mTitles = getResources().getStringArray(R.array.drawer_list_item_titles);
@@ -59,7 +57,7 @@ public class MainActivity extends Activity {
 
         if (getActionBar() != null) {
             //back button is removed by disabling this
-            getActionBar().setDisplayHomeAsUpEnabled(false);
+            getActionBar().setDisplayHomeAsUpEnabled(true);
             getActionBar().setHomeButtonEnabled(true);
         }
 
@@ -87,8 +85,9 @@ public class MainActivity extends Activity {
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+        //if not saved state, we want to display main view
         if (savedInstanceState == null) {
-            selectItem(0);
+            selectItem(1);
         }
     }
 
@@ -154,7 +153,8 @@ public class MainActivity extends Activity {
                 replaceFragment(fragment);
         }
         setActionBarTitle(position);
-        mDrawerListView.setItemChecked(position, true);
+        //we do not want to check the clicked item
+//        mDrawerListView.setItemChecked(position, true);
         mDrawerLayout.closeDrawer(mDrawerListView);
     }
 
@@ -218,7 +218,8 @@ public class MainActivity extends Activity {
                  * and added this to disallow the old behaviour
                 */
                 .disallowAddToBackStack()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
                 .commit();
     }
 
@@ -226,8 +227,10 @@ public class MainActivity extends Activity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-            setActionBarTitle(position);
+            if (position != 0) {
+                selectItem(position);
+                setActionBarTitle(position);
+            }
         }
     }
 
@@ -284,8 +287,8 @@ public class MainActivity extends Activity {
      * <p>Other additional default key handling may be performed
      * if configured with {@link #setDefaultKeyMode}.
      *
-     * @param keyCode
-     * @param event
+     * @param keyCode the key code
+     * @param event the key event
      * @return Return <code>true</code> to prevent this event from being propagated
      * further, or <code>false</code> to indicate that you have not handled
      * this event and it should continue to be propagated.

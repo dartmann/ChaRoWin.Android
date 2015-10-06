@@ -47,7 +47,7 @@ public class DrawerAdapter extends ArrayAdapter<DrawerItem> {
         if (position == 0) {
             view = LayoutInflater
                     .from(parent.getContext())
-                    .inflate(R.layout.drawer_list_item_firstitem, parent, false);
+                    .inflate(R.layout.drawer_list_item_first, parent, false);
             ImageView circularImageView =
                     (ImageView) view.findViewById(
                             R.id.drawer_list_item_test_firstitem_circularimageview);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:id="@+id/fragment_user_list_item_delimiter_textview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+    <View
+        android:id="@+id/fragment_user_list_item_delimiter_view_separator"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/fragment_user_list_item_delimiter_textview_title"
+        android:layout_marginTop="5dp"
+        android:layout_height="1dp"
+        android:visibility="visible"
+        android:background="@android:color/darker_gray"
+        />
+</RelativeLayout>
