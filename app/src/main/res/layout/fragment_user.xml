@@ -8,7 +8,7 @@
     <ListView
         android:id="@+id/fragment_user_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <!-- TODO: create single list element layout (there are different styles) -->
+        android:layout_height="wrap_content"
+        >
     </ListView>
 </LinearLayout>

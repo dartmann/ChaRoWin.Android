@@ -1,7 +1,5 @@
 package de.davidartmann.charowin;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -10,7 +8,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -27,8 +28,9 @@ import de.davidartmann.charowin.adapter.DrawerAdapter;
 import de.davidartmann.charowin.adapter.model.DrawerItem;
 import de.davidartmann.charowin.fragment.DietFragment;
 import de.davidartmann.charowin.fragment.TopFragment;
+import de.davidartmann.charowin.fragment.user.UserFragment;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String MAIN_ACTIVITY = "MainActivity";
 
@@ -55,10 +57,13 @@ public class MainActivity extends Activity {
         // Set the list's click listener
         mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
-        if (getActionBar() != null) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();/*getActionBar();*/
+        if (actionBar != null) {
             //back button is removed by disabling this
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-            getActionBar().setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
         }
 
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -85,7 +90,7 @@ public class MainActivity extends Activity {
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        //if not saved state, we want to display main view
+        //if not saved state, we want to display main(:= top) view
         if (savedInstanceState == null) {
             selectItem(1);
         }
@@ -104,7 +109,7 @@ public class MainActivity extends Activity {
         else {
             title = mTitles[position];
         }
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();/*getActionBar();*/
         if (actionBar != null) {
             actionBar.setTitle(title);
         } else {
@@ -128,15 +133,18 @@ public class MainActivity extends Activity {
     private void selectItem(int position) {
         Fragment fragment;
         switch (position) {
+            case 0:
+                fragment = new UserFragment();
+                replaceFragment(fragment);
+                break;
             case 1:
                 fragment = new TopFragment();
                 replaceFragment(fragment);
                 break;
             case 2:
-//                fragment = new TrainingFragmentExerciseList();
-//                fragment = new TrainingFragmentOverview();
                 Intent intent = new Intent(this, TrainingActivityOverviewNew.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.animation_down_enter, R.anim.animation_down_exit);
                 break;
             case 3:
                 fragment = new DietFragment();
@@ -227,10 +235,8 @@ public class MainActivity extends Activity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (position != 0) {
-                selectItem(position);
-                setActionBarTitle(position);
-            }
+            selectItem(position);
+            setActionBarTitle(position);
         }
     }
 

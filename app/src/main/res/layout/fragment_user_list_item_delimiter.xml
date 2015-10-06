@@ -10,16 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         />
     <View
         android:id="@+id/fragment_user_list_item_delimiter_view_separator"
         android:layout_width="fill_parent"
         android:layout_below="@id/fragment_user_list_item_delimiter_textview_title"
-        android:layout_marginTop="5dp"
-        android:layout_height="1dp"
-        android:visibility="visible"
+        android:layout_marginTop="2dp"
+        android:layout_height="1.5dp"
         android:background="@android:color/darker_gray"
         />
 </RelativeLayout>

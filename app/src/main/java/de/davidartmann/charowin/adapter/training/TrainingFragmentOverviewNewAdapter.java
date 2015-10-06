@@ -59,7 +59,6 @@ public class TrainingFragmentOverviewNewAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Log.d(TRAINING_FRAGMENT_OVERVIEW_NEW_ADAPTER, mTitles[position]);
         return mTitles[position];
     }
 }

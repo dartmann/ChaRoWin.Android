@@ -15,22 +15,22 @@ import java.util.Date;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.user.model.UserElements;
+import de.davidartmann.charowin.adapter.user.model.UserElement;
 
 /**
  * Adapter class for the listview of the user view.
  *
  * Created by David on 06.10.2015.
  */
-public class UserAdapter extends ArrayAdapter<UserElements> {
+public class UserAdapter extends ArrayAdapter<UserElement> {
 
     private static final String USER_ADAPTER = UserAdapter.class.getSimpleName();
 
     private final Context context;
     private final int layoutResourceId;
-    private List<UserElements> userElements;
+    private List<UserElement> userElements;
 
-    public UserAdapter(Context context, int layoutResourceId, List<UserElements> userElements) {
+    public UserAdapter(Context context, int layoutResourceId, List<UserElement> userElements) {
         super(context, layoutResourceId, userElements);
         this.context = context;
         this.layoutResourceId = layoutResourceId;
@@ -40,8 +40,6 @@ public class UserAdapter extends ArrayAdapter<UserElements> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
-//        ImageView icon = (ImageView) view.findViewById(R.id.fragment_user_list_item_imageview_icon);
-//        CheckBox checkBox = (CheckBox) view.findViewById(R.id.fragment_user_list_item_checkbox);
         if (position == 0 || position == 4 || position == 8) {
             view = LayoutInflater
                     .from(parent.getContext())
@@ -68,6 +66,7 @@ public class UserAdapter extends ArrayAdapter<UserElements> {
             TextView headline = (TextView) view.findViewById(R.id.fragment_user_list_item_textview_headline);
             TextView subHeadline = (TextView) view.findViewById(R.id.fragment_user_list_item_textview_subheadline);
             CheckBox checkBox = (CheckBox) view.findViewById(R.id.fragment_user_list_item_checkbox);
+            checkBox.setVisibility(View.GONE);
             switch (position) {
                 case 1:
                     headline.setText("Geschlecht");
@@ -75,7 +74,7 @@ public class UserAdapter extends ArrayAdapter<UserElements> {
                     break;
                 case 2:
                     headline.setText("Geburtsdatum");
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.YYYY");
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
                     subHeadline.setText(simpleDateFormat.format(new Date()));
                     break;
                 case 3:
@@ -94,12 +93,13 @@ public class UserAdapter extends ArrayAdapter<UserElements> {
                     subHeadline.setText("cm / kg");
                     break;
                 case 9:
-                    headline.setText("Pause Bildschirm eingeschalten lassen");
-                    subHeadline.setText("Ja");
+                    headline.setText("Pause Bildschirm aktiv");
+                    subHeadline.setText("An");
+                    checkBox.setVisibility(View.VISIBLE);
                     checkBox.setChecked(true);
                     break;
                 default:
-                    Log.w(USER_ADAPTER, "default path in else path switch case");
+                    Log.w(USER_ADAPTER, "default path in else path of switch case");
             }
         }
         return view;

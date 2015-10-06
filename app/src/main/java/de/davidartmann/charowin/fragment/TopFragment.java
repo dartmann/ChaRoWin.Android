@@ -41,17 +41,10 @@ public class TopFragment extends Fragment {
     private TextView mTextViewMealTime;
     private TextView mTextViewEnergySum;
     private ListView mListViewMeals;
-    /*
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    */
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
         final View view = inflater.inflate(R.layout.fragment_top_static, container, false);
         if (view != null) {
             mRelativeLayoutNextTraining = (RelativeLayout) view.findViewById(
@@ -113,34 +106,6 @@ public class TopFragment extends Fragment {
             // energy of single items), so we have to change the adapter
             mListViewMeals.setAdapter(new ArrayAdapter<String>(
                     view.getContext(), R.layout.fragment_top_static_meal_listitem, createMeals()));
-            /*
-            mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_top_recyclerview);
-            mRecyclerView.setHasFixedSize(true);
-            mLayoutManager = new LinearLayoutManager(view.getContext());
-            mRecyclerView.setLayoutManager(mLayoutManager);
-            mAdapter = new TopAdapter_OLD(createTopAdapterModels());//TODO: debugging, change to real data when possible
-            mRecyclerView.setAdapter(mAdapter);
-            */
-            /*
-            imageView = (ImageView) view.findViewById(R.id.fragment_top_imageview_debug);
-            Picasso.with(view.getContext()).setLoggingEnabled(true);
-            Picasso.with(view.getContext())
-                    .load("http://4.bp.blogspot.com/-a77bEtz0S48/USJ5cZL_ByI/AAAAAAAAFD8/LHJ_JWbYCOU/s1600/Arnold+Schwarzenegger+0.jpg")
-                    .into(imageView);
-
-            mCircularImageViewTraining.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    replaceFragment(new TrainingFragmentExerciseList());
-                }
-            });
-            mCircularImageViewDiet.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    replaceFragment(new DietFragment());
-                }
-            });
-            */
         } else {
             Log.w(TOP_FRAGMENT, "view was null");
         }

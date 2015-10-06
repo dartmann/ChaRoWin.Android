@@ -5,14 +5,14 @@ package de.davidartmann.charowin.adapter.user.model;
  * 
  * Created by David on 06.10.2015.
  */
-public class UserElements {
+public class UserElement {
 
     private int icon;
     private String headline;
     private String subHeadline;
     private boolean checkableItem;
 
-    public UserElements(int icon, String headline, String subHeadline, boolean checkableItem) {
+    public UserElement(int icon, String headline, String subHeadline, boolean checkableItem) {
         this.icon = icon;
         this.headline = headline;
         this.subHeadline = subHeadline;

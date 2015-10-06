@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:background="?android:attr/activatedBackgroundIndicator"
+    android:background="@color/green"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:padding="10dp"
     >
