@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Charowin.iml" filepath="$PROJECT_DIR$/Charowin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChaRoWin.Android.iml" filepath="$PROJECT_DIR$/ChaRoWin.Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

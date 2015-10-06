@@ -20,6 +20,7 @@
     <color name="orange_dark">#E65122</color>
     <color name="orange_light">#FF835C</color>
     <color name="blue">#2196f3</color>
+    <color name="blue_android_material">#33b5e5</color>
     <color name="brown">#822700</color>
     <color name="brown_dark">#571b01</color>
     <color name="black">#000000</color>

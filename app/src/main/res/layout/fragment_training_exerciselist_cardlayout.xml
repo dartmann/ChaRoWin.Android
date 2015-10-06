@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@android:color/secondary_text_light"
-                    android:text="Wiederholungen: "
+                    android:text="Wdhl.: "
                     />
                 <TextView
                     android:id="@+id/fragment_training_cardview_linearlayout_textview_reps"

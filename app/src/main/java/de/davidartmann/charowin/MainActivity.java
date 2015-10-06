@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
@@ -26,7 +27,6 @@ import de.davidartmann.charowin.adapter.DrawerAdapter;
 import de.davidartmann.charowin.adapter.model.DrawerItem;
 import de.davidartmann.charowin.fragment.DietFragment;
 import de.davidartmann.charowin.fragment.TopFragment;
-import de.davidartmann.charowin.fragment.TrainingFragmentOverview;
 
 public class MainActivity extends Activity {
 
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.drawer_list_view);
         mDrawerListView.setAdapter(new DrawerAdapter(this,
-                R.layout.drawer_list_item_test, drawerItems));
+                R.layout.drawer_list_item, drawerItems));
         // Set the list's click listener
         mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -131,25 +131,30 @@ public class MainActivity extends Activity {
         switch (position) {
             case 1:
                 fragment = new TopFragment();
+                replaceFragment(fragment);
                 break;
             case 2:
 //                fragment = new TrainingFragmentExerciseList();
-                fragment = new TrainingFragmentOverview();
+//                fragment = new TrainingFragmentOverview();
+                Intent intent = new Intent(this, TrainingActivityOverviewNew.class);
+                startActivity(intent);
                 break;
             case 3:
                 fragment = new DietFragment();
+                replaceFragment(fragment);
                 break;
             case 4:
                 fragment = new TopFragment();
+                replaceFragment(fragment);
                 Toast.makeText(this, "settings soon to come", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 Log.w(MAIN_ACTIVITY, "Default path in selectItem()");
                 fragment = new TopFragment();
+                replaceFragment(fragment);
         }
         setActionBarTitle(position);
         mDrawerListView.setItemChecked(position, true);
-        replaceFragment(fragment);
         mDrawerLayout.closeDrawer(mDrawerListView);
     }
 
@@ -237,7 +242,7 @@ public class MainActivity extends Activity {
             DrawerItem drawerItem = null;
             switch (i) {
                 case 0:
-                    drawerItem = new DrawerItem(R.drawable.ic_person_black_48dp, mTitles[i]);
+                    drawerItem = new DrawerItem(R.drawable.ic_person_black_48dp, "");
                     break;
                 case 1:
                     drawerItem = new DrawerItem(R.drawable.ic_home_black_24dp, mTitles[i]);

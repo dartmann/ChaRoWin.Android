@@ -6,7 +6,7 @@
     <string name="drawer_close">Close drawer</string>
     <string name="drawer_list_item_content_description">Drawer List Item</string>
     <string-array name="drawer_list_item_titles">
-        <item>90.0 kg\n14.0 %</item>
+        <item>Benutzer</item>
         <item>Hauptseite</item>
         <item>Training</item>
         <item>Ernährung</item>

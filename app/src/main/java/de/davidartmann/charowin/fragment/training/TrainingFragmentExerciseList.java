@@ -1,8 +1,8 @@
-package de.davidartmann.charowin.fragment;
+package de.davidartmann.charowin.fragment.training;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,10 +17,7 @@ import de.davidartmann.charowin.adapter.TrainingFragmentExerciseListAdapter;
 import de.davidartmann.charowin.adapter.model.Exercise;
 
 /**
- * Fragment for the list of exercises of the actual trainingplan.
- *
- * Created by David on 28.08.2015.
- * //TODO: obsolete class -> see: "TrainingActivityOverviewNew"!!!
+ * Created by David on 05.10.2015.
  */
 public class TrainingFragmentExerciseList extends Fragment {
 
