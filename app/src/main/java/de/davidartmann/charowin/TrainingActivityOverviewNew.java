@@ -8,7 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import de.davidartmann.charowin.adapter.training.TrainingFragmentOverviewNewAdapter;
 
@@ -60,7 +62,21 @@ public class TrainingActivityOverviewNew extends AppCompatActivity {
                 NavUtils.navigateUpFromSameTask(this);
                 overridePendingTransition(R.anim.animation_up_enter, R.anim.animation_up_exit);
                 return true;
+            case R.id.action_example:
+                Toast.makeText(this, "example", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.action_settings:
+                Toast.makeText(this, "settings", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //TODO: other menu?
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
