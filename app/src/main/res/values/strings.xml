@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Charowin</string>
+    <string name="app_name">ChaRoWin</string>
 
     <!-- drawer relevant strings -->
     <string name="drawer_open">Open drawer</string>
