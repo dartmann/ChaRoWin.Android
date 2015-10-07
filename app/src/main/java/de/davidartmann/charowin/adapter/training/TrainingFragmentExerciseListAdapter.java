@@ -39,11 +39,11 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
 
         public ViewHolder(View view) {
             super(view);
-            mImageViewExerciseIcon = (ImageView) view.findViewById(R.id.fragment_training_cardview_linearlayout_imageview_exerciseicon);
-            mTextViewExerciseName = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_exercisename);
-            mTextViewSets = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_sets);
-            mTextViewReps = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_reps);
-            mTextViewRestTime = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_resttime);
+            mImageViewExerciseIcon = (ImageView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_imageview_exerciseicon);
+            mTextViewExerciseName = (TextView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_textview_exercisename);
+            mTextViewSets = (TextView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_textview_sets);
+            mTextViewReps = (TextView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_textview_reps);
+            mTextViewRestTime = (TextView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_textview_resttime);
             context = view.getContext();
         }
     }
