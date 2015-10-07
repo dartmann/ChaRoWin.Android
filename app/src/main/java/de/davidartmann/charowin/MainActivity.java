@@ -2,7 +2,6 @@ package de.davidartmann.charowin;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
@@ -24,10 +23,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.davidartmann.charowin.adapter.DrawerAdapter;
-import de.davidartmann.charowin.adapter.model.DrawerItem;
-import de.davidartmann.charowin.fragment.DietFragment;
-import de.davidartmann.charowin.fragment.TopFragment;
+import de.davidartmann.charowin.adapter.drawer.DrawerAdapter;
+import de.davidartmann.charowin.adapter.drawer.model.DrawerItem;
+import de.davidartmann.charowin.fragment.diet.DietFragmentOverview;
+import de.davidartmann.charowin.fragment.top.TopFragment;
+import de.davidartmann.charowin.fragment.training.TrainingFragmentOverview;
 import de.davidartmann.charowin.fragment.user.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,10 +45,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<DrawerItem> drawerItems;
-
         mTitles = getResources().getStringArray(R.array.drawer_list_item_titles);
-        drawerItems = createDrawerItems();
+        List<DrawerItem> drawerItems = createDrawerItems();;
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.drawer_list_view);
@@ -101,14 +99,14 @@ public class MainActivity extends AppCompatActivity {
      * @param position the position of the clicked DrawerItem
      */
     private void setActionBarTitle(int position) {
-        String title;
-        if (position == 0) {
-            //Home clicked -> AppName as title
-            title = getResources().getString(R.string.app_name);
-        }
-        else {
-            title = mTitles[position];
-        }
+        String title = mTitles[position];
+//        if (position == 0) {
+//            //Home clicked -> AppName as title
+//            title = getResources().getString(R.string.app_name);
+//        }
+//        else {
+//            title = mTitles[position];
+//        }
         ActionBar actionBar = getSupportActionBar();/*getActionBar();*/
         if (actionBar != null) {
             actionBar.setTitle(title);
@@ -142,12 +140,11 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(fragment);
                 break;
             case 2:
-                Intent intent = new Intent(this, TrainingActivityOverviewNew.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.animation_down_enter, R.anim.animation_down_exit);
+                fragment = new TrainingFragmentOverview();
+                replaceFragment(fragment);
                 break;
             case 3:
-                fragment = new DietFragment();
+                fragment = new DietFragmentOverview();
                 replaceFragment(fragment);
                 break;
             case 4:
@@ -221,13 +218,12 @@ public class MainActivity extends AppCompatActivity {
                  * removed this, to not add old fragment views on the stack, which then are
                  * accessible by tapping (hw/sw)back button
                  *
-                .addToBackStack(null)
+                 .addToBackStack(null)
                  *
                  * and added this to disallow the old behaviour
                 */
                 .disallowAddToBackStack()
-//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
 

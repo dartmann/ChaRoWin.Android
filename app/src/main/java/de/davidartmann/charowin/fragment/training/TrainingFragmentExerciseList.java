@@ -13,13 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.TrainingFragmentExerciseListAdapter;
-import de.davidartmann.charowin.adapter.model.Exercise;
+import de.davidartmann.charowin.adapter.training.TrainingFragmentExerciseListAdapter;
+import de.davidartmann.charowin.adapter.training.model.Exercise;
 
 /**
  * Created by David on 05.10.2015.
  */
 public class TrainingFragmentExerciseList extends Fragment {
+
+    private static final String TRAINING_FRAGMENT_EXERCISELIST =
+            TrainingFragmentExerciseList.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;

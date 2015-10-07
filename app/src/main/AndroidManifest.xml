@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TrainingActivityOverviewNew"
+            android:name=".fragment.training.TrainingFragmentOverview"
             android:label="@string/app_name">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

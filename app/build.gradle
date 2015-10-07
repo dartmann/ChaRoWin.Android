@@ -43,4 +43,6 @@ dependencies {
     compile 'com.roomorama:caldroid:2.2.0'
     //charts
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.4'
+    //Interactive paging indicator widget
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }

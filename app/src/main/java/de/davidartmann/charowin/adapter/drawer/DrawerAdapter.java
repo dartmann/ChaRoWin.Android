@@ -1,4 +1,4 @@
-package de.davidartmann.charowin.adapter;
+package de.davidartmann.charowin.adapter.drawer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.model.DrawerItem;
+import de.davidartmann.charowin.adapter.drawer.model.DrawerItem;
 
 /**
  * Custom adapter class for the NavigationDrawer.

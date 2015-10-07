@@ -1,4 +1,4 @@
-package de.davidartmann.charowin.fragment;
+package de.davidartmann.charowin.fragment.top;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -45,7 +45,7 @@ public class TopFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_top_static, container, false);
+        final View view = inflater.inflate(R.layout.fragment_top, container, false);
         if (view != null) {
             mRelativeLayoutNextTraining = (RelativeLayout) view.findViewById(
                     R.id.fragment_top_static_relativelayout_training);
@@ -105,7 +105,7 @@ public class TopFragment extends Fragment {
             //TODO: maybe later the list gets more complex (adding more infos e.g. weight,
             // energy of single items), so we have to change the adapter
             mListViewMeals.setAdapter(new ArrayAdapter<String>(
-                    view.getContext(), R.layout.fragment_top_static_meal_listitem, createMeals()));
+                    view.getContext(), R.layout.fragment_top_meal_listitem, createMeals()));
         } else {
             Log.w(TOP_FRAGMENT, "view was null");
         }

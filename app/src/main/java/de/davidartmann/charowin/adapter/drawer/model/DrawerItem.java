@@ -1,7 +1,9 @@
-package de.davidartmann.charowin.adapter.model;
+package de.davidartmann.charowin.adapter.drawer.model;
+
+import de.davidartmann.charowin.adapter.drawer.DrawerAdapter;
 
 /**
- * Model class for the {@link de.davidartmann.charowin.adapter.DrawerAdapter}.
+ * Model class for the {@link DrawerAdapter}.
  * Created by David on 28.09.2015.
  */
 public class DrawerItem {

@@ -1,4 +1,4 @@
-package de.davidartmann.charowin.adapter.model;
+package de.davidartmann.charowin.adapter.training.model;
 
 import de.davidartmann.charowin.model.BaseModel;
 
@@ -6,9 +6,7 @@ import de.davidartmann.charowin.model.BaseModel;
  * Model class for a exercise.
  * Created by David on 25.09.2015.
  */
-public class Exercise extends BaseModel {
-
-    //TODO: implement relations to muscel and workout
+public class Exercise {
 
     private String imageUrl;
     private String exerciseName;

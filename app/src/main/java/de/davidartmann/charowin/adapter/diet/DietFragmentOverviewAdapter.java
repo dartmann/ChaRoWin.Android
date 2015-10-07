@@ -1,11 +1,11 @@
-package de.davidartmann.charowin.adapter.training;
+package de.davidartmann.charowin.adapter.diet;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
+import de.davidartmann.charowin.fragment.diet.DietFragmentMealList;
 import de.davidartmann.charowin.fragment.training.TrainingFragmentCharts;
 import de.davidartmann.charowin.fragment.training.TrainingFragmentExerciseList;
 import de.davidartmann.charowin.fragment.training.TrainingFragmentWorkoutCalender;
@@ -18,14 +18,14 @@ import de.davidartmann.charowin.fragment.training.TrainingFragmentWorkoutPlanLis
  *
  * Created by David on 05.10.2015.
  */
-public class TrainingFragmentOverviewNewAdapter extends FragmentStatePagerAdapter {
+public class DietFragmentOverviewAdapter extends FragmentStatePagerAdapter {
 
-    private static final String TRAINING_FRAGMENT_OVERVIEW_NEW_ADAPTER =
-            TrainingFragmentOverviewNewAdapter.class.getSimpleName();
+    private static final String DIET_FRAGMENT_OVERVIEW_ADAPTER =
+            DietFragmentOverviewAdapter.class.getSimpleName();
 
     private String[] mTitles;
 
-    public TrainingFragmentOverviewNewAdapter(FragmentManager fragmentManager, String[] mTitles) {
+    public DietFragmentOverviewAdapter(FragmentManager fragmentManager, String[] mTitles) {
         super(fragmentManager);
         this.mTitles = mTitles;
     }
@@ -35,20 +35,11 @@ public class TrainingFragmentOverviewNewAdapter extends FragmentStatePagerAdapte
         Fragment fragment;
         switch (position) {
             case 0:
-                fragment = new TrainingFragmentExerciseList();
-                break;
-            case 1:
-                fragment = new TrainingFragmentWorkoutPlanList();
-                break;
-            case 2:
-                fragment = new TrainingFragmentWorkoutCalender();
-                break;
-            case 3:
-                fragment = new TrainingFragmentCharts();
+                fragment = new DietFragmentMealList();
                 break;
             default:
-                Log.w(TRAINING_FRAGMENT_OVERVIEW_NEW_ADAPTER, "default path in getItem()");
-                fragment = new TrainingFragmentExerciseList();
+                Log.w(DIET_FRAGMENT_OVERVIEW_ADAPTER, "default path in getItem()");
+                fragment = new DietFragmentMealList();
         }
         return fragment;
     }

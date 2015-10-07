@@ -1,4 +1,4 @@
-package de.davidartmann.charowin.adapter;
+package de.davidartmann.charowin.adapter.diet;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -14,36 +14,35 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.model.Exercise;
+import de.davidartmann.charowin.adapter.diet.model.Meal;
+import de.davidartmann.charowin.adapter.training.model.Exercise;
 
 /**
  * Adapter class for the list of exercise of a trainingsplan.
  *
  * Created by David on 26.09.2015.
  */
-public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<TrainingFragmentExerciseListAdapter.ViewHolder> {
+public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragmentMealListAdapter.ViewHolder> {
 
-    private List<Exercise> exercises;
+    private List<Meal> meals;
 
-    public TrainingFragmentExerciseListAdapter(List<Exercise> exercises) {
-        this.exercises = exercises;
+    public DietFragmentMealListAdapter(List<Meal> meals) {
+        this.meals = meals;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageViewExerciseIcon;
-        public TextView mTextViewExerciseName;
-        public TextView mTextViewSets;
-        public TextView mTextViewReps;
-        public TextView mTextViewRestTime;
+        public ImageView mImageViewMealIcon;
+        public TextView mTextViewMealName;
+        public TextView mTextViewMealTime;
+        public TextView mTextViewEnergyKcal;
         private Context context;
 
         public ViewHolder(View view) {
             super(view);
-            mImageViewExerciseIcon = (ImageView) view.findViewById(R.id.fragment_training_cardview_linearlayout_imageview_exerciseicon);
-            mTextViewExerciseName = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_exercisename);
-            mTextViewSets = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_sets);
-            mTextViewReps = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_reps);
-            mTextViewRestTime = (TextView) view.findViewById(R.id.fragment_training_cardview_linearlayout_textview_resttime);
+            mImageViewMealIcon = (ImageView) view.findViewById(R.id.fragment_diet_cardview_linearlayout_imageview_mealicon);
+            mTextViewMealName = (TextView) view.findViewById(R.id.fragment_diet_cardview_linearlayout_textview_mealname);
+            mTextViewMealTime = (TextView) view.findViewById(R.id.fragment_diet_cardview_linearlayout_textview_mealtime);
+            mTextViewEnergyKcal = (TextView) view.findViewById(R.id.fragment_diet_cardview_linearlayout_textview_energykcal);
             context = view.getContext();
         }
     }
@@ -51,7 +50,7 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
     /**
      * Called by RecyclerView to display the data at the specified position. This method
      * should update the contents of the
-     * {@link android.support.v7.widget.RecyclerView.ViewHolder#itemView}
+     * {@link RecyclerView.ViewHolder#itemView}
      * to reflect the item at the given position.
      * <p/>
      * Note that unlike {@link ListView}, RecyclerView will not call this
@@ -60,7 +59,7 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
      * use the <code>position</code> parameter while acquiring the related data item inside this
      * method and should not keep a copy of it. If you need the position of an item later on
      * (e.g. in a click listener), use
-     * {@link android.support.v7.widget.RecyclerView.ViewHolder#getAdapterPosition()}
+     * {@link RecyclerView.ViewHolder#getAdapterPosition()}
      * which will have the updated adapter position.
      *
      * @param holder   The ViewHolder which should be updated to represent the contents of the
@@ -69,16 +68,15 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Exercise exercise = exercises.get(position);
+        Meal meal = meals.get(position);
         Picasso.with(holder.context)
-                .load(exercise.getImageUrl())
+                .load(meal.getImageUrl())
                 .placeholder(android.R.drawable.ic_menu_add)
                 .error(android.R.drawable.ic_menu_delete)
-                .into(holder.mImageViewExerciseIcon);
-        holder.mTextViewExerciseName.setText(exercise.getExerciseName());
-        holder.mTextViewSets.setText(exercise.getSets());
-        holder.mTextViewReps.setText(exercise.getReps());
-        holder.mTextViewRestTime.setText(exercise.getRestTime());
+                .into(holder.mImageViewMealIcon);
+        holder.mTextViewMealName.setText(meal.getMealName());
+        holder.mTextViewMealTime.setText(meal.getMealTime());
+        holder.mTextViewEnergyKcal.setText(meal.getEnergyKcal());
     }
 
     /**
@@ -106,7 +104,7 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
         // create a new view
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_training_exerciselist_cardlayout, parent, false);
+                .inflate(R.layout.fragment_diet_meallist_cardlayout, parent, false);
         // set the view's size, margins, paddings and layout parameters...
         return new ViewHolder(view);
     }
@@ -118,6 +116,6 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
      */
     @Override
     public int getItemCount() {
-        return exercises.size();
+        return meals.size();
     }
 }

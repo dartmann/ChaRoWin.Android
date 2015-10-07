@@ -20,12 +20,18 @@
     <string name="fragment_top_next_training_title">Nächstes Training</string>
     <string name="fragment_top_next_meal_title">Nächste Mahlzeit</string>
 
-    <!-- FragmentTrainingOverview -->
+    <!-- TrainingFragmentOverview -->
     <string-array name="fragment_training_overview_titles">
         <item>Training</item>
         <item>Trainingsplan</item>
         <item>Kalender</item>
         <item>Statistik</item>
+    </string-array>
+
+    <!-- DietFragmentOverview -->
+    <string-array name="fragment_diet_overview">
+        <item>Essen</item>
+        <!-- TODO -->
     </string-array>
 
 </resources>

@@ -10,14 +10,14 @@
     tools:context=".TopFragment"
     >
     <!-- TODO: replace all fix strings with the constants from xml -->
-
     <RelativeLayout
         android:id="@+id/fragment_top_static_relativelayout_training"
         android:padding="@dimen/activity_horizontal_margin"
         android:background="@drawable/rounded_corner_layout"
         android:layout_margin="@dimen/abc_action_bar_overflow_padding_start_material"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         >
         <RelativeLayout
             android:id="@+id/fragment_top_static_relativelayout_training_relativelayout"
@@ -170,7 +170,8 @@
         android:layout_margin="@dimen/abc_action_bar_overflow_padding_start_material"
         android:background="@drawable/rounded_corner_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         >
         <RelativeLayout
             android:id="@+id/fragment_top_static_relativelayout_meal_relativelayout"
