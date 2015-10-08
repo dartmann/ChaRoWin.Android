@@ -5,43 +5,42 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.diet.model.Meal;
+import de.davidartmann.charowin.adapter.diet.model.Dietplan;
 
 /**
- * Adapter class for the list of exercise of a trainingsplan.
+ * Adapter class for the list of dietplans of a trainingsplan.
  *
  * Created by David on 26.09.2015.
  */
-public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragmentMealListAdapter.ViewHolder> {
+public class DietFragmentDietplanListAdapter extends RecyclerView.Adapter<DietFragmentDietplanListAdapter.ViewHolder> {
 
-    private List<Meal> meals;
+    private List<Dietplan> dietplans;
 
-    public DietFragmentMealListAdapter(List<Meal> meals) {
-        this.meals = meals;
+    public DietFragmentDietplanListAdapter(List<Dietplan> dietplans) {
+        this.dietplans = dietplans;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageViewMealIcon;
-        public TextView mTextViewMealName;
-        public TextView mTextViewMealTime;
+        public TextView mTextViewDietplanName;
+        public TextView mTextViewDescription;
+        public TextView mTextViewAmountDays;
+        public TextView mTextViewAmountMeals;
         public TextView mTextViewEnergyKcal;
         private Context context;
 
         public ViewHolder(View view) {
             super(view);
-            mImageViewMealIcon = (ImageView) view.findViewById(R.id.fragment_diet_meallist_cardview_imageview_mealicon);
-            mTextViewMealName = (TextView) view.findViewById(R.id.fragment_diet_meallist_cardview_textview_mealname);
-            mTextViewMealTime = (TextView) view.findViewById(R.id.fragment_diet_meallist_cardview_textview_mealtime);
-            mTextViewEnergyKcal = (TextView) view.findViewById(R.id.fragment_diet_meallist_cardview_textview_energykcal);
+            mTextViewDietplanName = (TextView) view.findViewById(R.id.fragment_diet_dietplanlist_cardview_textview_dietplanname);
+            mTextViewDescription = (TextView) view.findViewById(R.id.fragment_diet_dietplanlist_cardview_textview_description);
+            mTextViewAmountDays = (TextView) view.findViewById(R.id.fragment_diet_dietplanlist_cardview_textview_amountdays);
+            mTextViewAmountMeals = (TextView) view.findViewById(R.id.fragment_diet_dietplanlist_cardview_textview_amountmeals);
+            mTextViewEnergyKcal = (TextView) view.findViewById(R.id.fragment_diet_dietplanlist_cardview_textview_energykcal);
             context = view.getContext();
         }
     }
@@ -67,15 +66,12 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Meal meal = meals.get(position);
-        Picasso.with(holder.context)
-                .load(meal.getImageUrl())
-                .placeholder(android.R.drawable.ic_menu_add)
-                .error(android.R.drawable.ic_menu_delete)
-                .into(holder.mImageViewMealIcon);
-        holder.mTextViewMealName.setText(meal.getMealName());
-        holder.mTextViewMealTime.setText(meal.getMealTime());
-        holder.mTextViewEnergyKcal.setText(meal.getEnergyKcal());
+        Dietplan dietplan = dietplans.get(position);
+        holder.mTextViewDietplanName.setText(dietplan.getDietplanName());
+        holder.mTextViewDescription.setText(dietplan.getDescription());
+        holder.mTextViewAmountDays.setText(dietplan.getAmountDays());
+        holder.mTextViewAmountMeals.setText(dietplan.getAmountMeals());
+        holder.mTextViewEnergyKcal.setText(dietplan.getEnergyKcal());
     }
 
     /**
@@ -103,7 +99,7 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
         // create a new view
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_diet_meallist_cardlayout, parent, false);
+                .inflate(R.layout.fragment_diet_dietplanlist_cardlayout, parent, false);
         // set the view's size, margins, paddings and layout parameters...
         return new ViewHolder(view);
     }
@@ -115,6 +111,6 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
      */
     @Override
     public int getItemCount() {
-        return meals.size();
+        return dietplans.size();
     }
 }

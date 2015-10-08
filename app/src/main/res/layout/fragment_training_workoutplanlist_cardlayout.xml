@@ -64,10 +64,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2.3"
+            android:layout_weight="2.2"
             >
             <ImageView
-                android:id="@+id/fragment_training_exerciselist_cardlayout_imageview_settings"
+                android:id="@+id/fragment_training_workoutplanlist_cardlayout_imageview_settings"
                 android:layout_width="wrap_content"
                 android:src="@drawable/ic_more_vert_black_24dp"
                 android:alpha="0.5"

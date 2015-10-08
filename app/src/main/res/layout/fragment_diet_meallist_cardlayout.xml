@@ -6,12 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:id="@+id/fragment_diet_cardview_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         >
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/fragment_diet_cardview_linearlayout_imageview_mealicon"
+            android:id="@+id/fragment_diet_meallist_cardview_imageview_mealicon"
             android:layout_width="50dp"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:layout_gravity="center"
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             >
             <TextView
-                android:id="@+id/fragment_diet_cardview_linearlayout_textview_mealname"
+                android:id="@+id/fragment_diet_meallist_cardview_textview_mealname"
                 android:text="Essenname"
                 android:layout_width="wrap_content"
                 android:textSize="24sp"
@@ -53,7 +52,7 @@
                     android:src="@drawable/ic_access_time_black_48dp"
                     />
                 <TextView
-                    android:id="@+id/fragment_diet_cardview_linearlayout_textview_mealtime"
+                    android:id="@+id/fragment_diet_meallist_cardview_textview_mealtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -63,7 +62,7 @@
                     android:text="08:00"
                     />
                 <TextView
-                    android:id="@+id/fragment_diet_cardview_linearlayout_textview_energykcal"
+                    android:id="@+id/fragment_diet_meallist_cardview_textview_energykcal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -84,7 +83,7 @@
             </LinearLayout>
         </LinearLayout>
         <ImageView
-            android:id="@+id/fragment_diet_cardview_linearlayout_imageviewsettings"
+            android:id="@+id/fragment_diet_meallist_cardview_imageview_settings"
             android:layout_width="1dp"
             android:src="@drawable/ic_more_vert_black_24dp"
             android:alpha="0.5"
