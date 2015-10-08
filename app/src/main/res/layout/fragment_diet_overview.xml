@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/fragment_diet_meallist_linearlayout"
+    >
     <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/fragment_diet_overview_new_pagerslidingtabstrip"
+        android:id="@+id/fragment_diet_overview_pagerslidingtabstrip"
         android:layout_width="match_parent"
         android:layout_height="48dip"
         app:pstsIndicatorColor="@color/green"
@@ -13,9 +16,8 @@
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/fragment_diet_overview_new_viewpager"
+        android:id="@+id/fragment_diet_overview_viewpager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-    </android.support.v4.view.ViewPager>
+        />
 </LinearLayout>

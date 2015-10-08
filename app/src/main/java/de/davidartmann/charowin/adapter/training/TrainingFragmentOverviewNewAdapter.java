@@ -2,13 +2,12 @@ package de.davidartmann.charowin.adapter.training;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import de.davidartmann.charowin.fragment.training.TrainingFragmentCharts;
 import de.davidartmann.charowin.fragment.training.TrainingFragmentExerciseList;
-import de.davidartmann.charowin.fragment.training.TrainingFragmentWorkoutCalender;
+import de.davidartmann.charowin.fragment.training.TrainingFragmentCalender;
 import de.davidartmann.charowin.fragment.training.TrainingFragmentWorkoutPlanList;
 
 /**
@@ -41,7 +40,7 @@ public class TrainingFragmentOverviewNewAdapter extends FragmentStatePagerAdapte
                 fragment = new TrainingFragmentWorkoutPlanList();
                 break;
             case 2:
-                fragment = new TrainingFragmentWorkoutCalender();
+                fragment = new TrainingFragmentCalender();
                 break;
             case 3:
                 fragment = new TrainingFragmentCharts();

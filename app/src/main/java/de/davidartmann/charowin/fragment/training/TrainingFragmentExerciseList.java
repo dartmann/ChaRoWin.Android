@@ -2,6 +2,7 @@ package de.davidartmann.charowin.fragment.training;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,23 +16,37 @@ import java.util.List;
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.training.TrainingFragmentExerciseListAdapter;
 import de.davidartmann.charowin.adapter.training.model.Exercise;
+import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
+ * Fragment for the exercise list.
+ *
  * Created by David on 05.10.2015.
  */
-public class TrainingFragmentExerciseList extends Fragment {
+public class TrainingFragmentExerciseList extends Fragment implements View.OnClickListener {
 
-    private static final String TRAINING_FRAGMENT_EXERCISELIST =
-            TrainingFragmentExerciseList.class.getSimpleName();
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+//    private static final String TRAINING_FRAGMENT_EXERCISELIST =
+//            TrainingFragmentExerciseList.class.getSimpleName();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //TODO: just for testing, delete afterwards:
+        List<Exercise> exercises = createExercises();
+        View view = inflater.inflate(R.layout.fragment_training_exerciselist, container, false);
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_training_exerciselist_recyclerview);
+        mRecyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView.Adapter mAdapter = new TrainingFragmentExerciseListAdapter(exercises);
+        mRecyclerView.setAdapter(mAdapter);
+        FloatingActionButton floatingActionButton =
+                (FloatingActionButton) view.findViewById(R.id.fragment_training_exerciselist_floatingactionbutton);
+        floatingActionButton.setOnClickListener(this);
+        return view;
+    }
+
+    private List<Exercise> createExercises() {
         List<Exercise> exercises = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
             Exercise exercise = new Exercise();
@@ -42,16 +57,15 @@ public class TrainingFragmentExerciseList extends Fragment {
             exercise.setRestTime("120");
             exercises.add(exercise);
         }
-        View view = inflater.inflate(R.layout.fragment_training_exerciselist, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_training_exerciselist_recyclerview);
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(view.getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new TrainingFragmentExerciseListAdapter(exercises);
-        mRecyclerView.setAdapter(mAdapter);
-        return view;
+        return exercises;
+    }
+
+    private void showExerciseAddDialog() {
+        CustomSnackBar.create(getView(), "Übung wurde gespeichert", null, null);
+    }
+
+    @Override
+    public void onClick(View v) {
+        showExerciseAddDialog();
     }
 }

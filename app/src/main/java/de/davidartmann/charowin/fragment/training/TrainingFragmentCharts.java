@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -33,7 +32,7 @@ public class TrainingFragmentCharts extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training_charts, container, false);
-        PieChart pieChart = (PieChart) view.findViewById(R.id.fragment_training_charts_linechart);
+        PieChart pieChart = (PieChart) view.findViewById(R.id.fragment_training_charts_piechart);
         pieChart.animateX(2000, Easing.EasingOption.EaseInCubic);
         //TODO: testing with mockup data
         List<String> xVals = new ArrayList<>();
@@ -50,7 +49,8 @@ public class TrainingFragmentCharts extends Fragment {
         set.setColors(ColorTemplate.VORDIPLOM_COLORS);
         PieData pieData = new PieData(xVals, set);
         pieChart.setData(pieData);
-        pieChart.setDescription("Übungsverteilung");
+        pieChart.setDescription("");
+        pieChart.setTouchEnabled(false);
         return view;
     }
 }

@@ -1,4 +1,4 @@
-package de.davidartmann.charowin.fragment.training;
+package de.davidartmann.charowin.fragment.diet;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,26 +11,30 @@ import android.widget.Toast;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import de.davidartmann.charowin.R;
+import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
+ * Fragment for the calender view of the diet section.
+ *
  * Created by David on 05.10.2015.
  */
-public class TrainingFragmentWorkoutCalender extends Fragment {
+public class DietFragmentCalender extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_training_calender, container, false);
+        View view = inflater.inflate(R.layout.fragment_diet_calender, container, false);
         CaldroidFragment caldroidFragment = new CaldroidFragment();
         caldroidFragment.setCaldroidListener(new CaldroidListener() {
             @Override
             public void onSelectDate(Date date, View view) {
-                Toast.makeText(view.getContext(), String.valueOf(date.getTime()),
-                        Toast.LENGTH_SHORT).show();
+                CustomSnackBar.create(view, new SimpleDateFormat("dd.MM.yyyy")
+                        .format(new Date(date.getTime())), null, null);
             }
         });
         Bundle bundle = new Bundle();
@@ -42,7 +46,7 @@ public class TrainingFragmentWorkoutCalender extends Fragment {
         caldroidFragment.setArguments(bundle);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_training_calender_linearlayout, caldroidFragment)
+                .replace(R.id.fragment_diet_calender_linearlayout, caldroidFragment)
                 .commit();
         return view;
     }

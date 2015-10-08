@@ -31,7 +31,9 @@
     <!-- DietFragmentOverview -->
     <string-array name="fragment_diet_overview">
         <item>Essen</item>
-        <!-- TODO -->
+        <item>Ernährungsplan</item>
+        <item>Kalender</item>
+        <item>Statistik</item>
     </string-array>
 
 </resources>

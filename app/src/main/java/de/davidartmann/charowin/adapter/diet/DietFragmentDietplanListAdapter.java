@@ -96,11 +96,9 @@ public class DietFragmentDietplanListAdapter extends RecyclerView.Adapter<DietFr
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.fragment_diet_dietplanlist_cardlayout, parent, false);
-        // set the view's size, margins, paddings and layout parameters...
         return new ViewHolder(view);
     }
 

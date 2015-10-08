@@ -5,8 +5,10 @@
     android:id="@+id/fragment_training_cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     >
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
@@ -22,27 +24,39 @@
                 android:id="@+id/fragment_training_workoutplanlist_cardview_textview_workoutplanname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="text"
+                android:text="Mockplan"
                 android:textSize="24sp"
                 />
             <TextView
                 android:id="@+id/fragment_training_workoutplanlist_cardview_textview_workoutdescription"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/fragment_training_workoutplanlist_cardview_textview_workoutplanname"
-                android:text="text"
+                android:text="Ein mockup Trainingsplan zu Testzwecken"
                 android:textSize="14sp"
+                android:layout_below="@+id/fragment_training_workoutplanlist_cardview_textview_workoutplanname"
+                android:gravity="center_vertical"
                 />
-            <TextView
-                android:id="@+id/fragment_training_workoutplanlist_cardview_textview_amountdays"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_below="@id/fragment_training_workoutplanlist_cardview_textview_workoutdescription"
-                android:layout_marginTop="5dp"
-                android:text="text"
-                android:textSize="14sp"
-                android:gravity="center"
-                />
+                >
+
+                <TextView
+                    android:id="@+id/fragment_training_workoutplanlist_cardview_textview_amountdays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="4"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=" Tage/Woche"
+                    android:textSize="14sp"
+                    />
+            </LinearLayout>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"

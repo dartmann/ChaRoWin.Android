@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_diet_dietplanlist_recyclerview"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/fragment_diet_charts_linechart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_lighter"
         />
-</RelativeLayout>
+</LinearLayout>

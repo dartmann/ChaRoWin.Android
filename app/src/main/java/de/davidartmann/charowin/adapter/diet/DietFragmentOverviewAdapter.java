@@ -5,11 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
+import de.davidartmann.charowin.fragment.diet.DietFragmentCalender;
+import de.davidartmann.charowin.fragment.diet.DietFragmentCharts;
+import de.davidartmann.charowin.fragment.diet.DietFragmentDietplanList;
 import de.davidartmann.charowin.fragment.diet.DietFragmentMealList;
-import de.davidartmann.charowin.fragment.training.TrainingFragmentCharts;
-import de.davidartmann.charowin.fragment.training.TrainingFragmentExerciseList;
-import de.davidartmann.charowin.fragment.training.TrainingFragmentWorkoutCalender;
-import de.davidartmann.charowin.fragment.training.TrainingFragmentWorkoutPlanList;
 
 /**
  * Adapter for the training tab overview.
@@ -36,6 +35,15 @@ public class DietFragmentOverviewAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 fragment = new DietFragmentMealList();
+                break;
+            case 1:
+                fragment = new DietFragmentDietplanList();
+                break;
+            case 2:
+                fragment = new DietFragmentCalender();
+                break;
+            case 3:
+                fragment = new DietFragmentCharts();
                 break;
             default:
                 Log.w(DIET_FRAGMENT_OVERVIEW_ADAPTER, "default path in getItem()");
