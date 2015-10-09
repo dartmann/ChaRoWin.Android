@@ -18,7 +18,7 @@ public class CustomSnackBar {
         Snackbar snackbar = Snackbar.make(view, text, Snackbar.LENGTH_SHORT);
         View snackView = snackbar.getView();
         TextView textView = (TextView) snackView.findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(ContextCompat.getColor(view.getContext(), R.color.green_light));
+        textView.setTextColor(ContextCompat.getColor(view.getContext(), R.color.green));
         if (actionText != null && onClickListener != null) {
             snackbar.setAction(actionText, onClickListener);
             snackbar.setActionTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
