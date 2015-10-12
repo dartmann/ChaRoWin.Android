@@ -36,4 +36,10 @@
         <item>Statistik</item>
     </string-array>
 
+    <!-- GenderChooserDialog -->
+    <string-array name="gender_chooser_dialog">
+        <item>Männlich</item>
+        <item>Weiblich</item>
+    </string-array>
+
 </resources>

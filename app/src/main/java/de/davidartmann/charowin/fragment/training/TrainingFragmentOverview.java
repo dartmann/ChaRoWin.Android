@@ -1,15 +1,13 @@
 package de.davidartmann.charowin.fragment.training;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.astuetz.PagerSlidingTabStrip;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.training.TrainingFragmentOverviewNewAdapter;
@@ -32,10 +30,12 @@ public class TrainingFragmentOverview extends Fragment {
         String[] mPagerTitleStripTitles = getResources().getStringArray(R.array.fragment_training_overview_titles);
         ViewPager mViewPager = (ViewPager) view.findViewById(R.id.fragment_training_overview_new_viewpager);
         mViewPager.setAdapter(new TrainingFragmentOverviewNewAdapter(
-                ((AppCompatActivity) getActivity()).getSupportFragmentManager(), mPagerTitleStripTitles));
-        PagerSlidingTabStrip pagerSlidingTabStrip =
-                (PagerSlidingTabStrip) view.findViewById(R.id.fragment_training_overview_new_pagerslidingtabstrip);
-        pagerSlidingTabStrip.setViewPager(mViewPager);
+                getActivity().getSupportFragmentManager(), mPagerTitleStripTitles));
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.fragment_training_overview_tablayout);
+        tabLayout.setupWithViewPager(mViewPager);
+//        PagerSlidingTabStrip pagerSlidingTabStrip =
+//                (PagerSlidingTabStrip) view.findViewById(R.id.fragment_training_overview_new_pagerslidingtabstrip);
+//        pagerSlidingTabStrip.setViewPager(mViewPager);
         return view;
     }
 }

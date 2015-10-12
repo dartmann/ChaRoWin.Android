@@ -5,20 +5,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/fragment_diet_meallist_linearlayout"
     >
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_diet_meallist_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_diet_meallist_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/grey_lighter"
-            />
-    </RelativeLayout>
+        android:background="@color/grey_lighter"
+        />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fragment_diet_meallist_floatingactionbutton"
         android:layout_width="wrap_content"
@@ -26,9 +19,8 @@
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/ic_add_black_48dp"
+        android:layout_gravity="bottom|end"
         app:fabSize="normal"
-        app:layout_anchor="@id/fragment_diet_meallist_linearlayout"
-        app:layout_anchorGravity="bottom|right|end"
-        app:backgroundTint="@color/blue"
+        app:backgroundTint="@color/green_dark_transcluent80"
         />
 </android.support.design.widget.CoordinatorLayout>

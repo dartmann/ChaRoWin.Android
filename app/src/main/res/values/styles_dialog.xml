@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme.Dialog" parent="android:Theme.DeviceDefault.Light.Dialog.MinWidth">
-        <item name="android:textColorPrimary">@color/green</item>
-        <item name="android:textAppearanceMedium">@style/TextAppearance.Meadium.AppTheme.Dialog</item>
-        <item name="android:borderlessButtonStyle">@style/Button.Borderless.AppTheme.Dialog</item>
+    <style name="AppTheme_Dialog" parent="android:Theme.DeviceDefault.Light.Dialog.MinWidth">
+        <item name="android:textAppearanceMedium">@style/AppTheme_Dialog_TextAppearance_Medium</item>
+        <item name="android:windowTitleStyle">@style/AppTheme_Dialog_WindowStyles</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorSecondary">@color/grey</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:checkedTextViewStyle">@style/AppTheme_Dialog_CheckedTextViewStyle</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/radio_button</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/radio_button_selector</item>
+        <item name="android:textViewStyle">@style/AppTheme_Dialog_TextViewStyle</item>
     </style>
 
-    <style name="TextAppearance.Meadium.AppTheme.Dialog" parent="android:TextAppearance.DeviceDefault.Medium">
+    <style name="AppTheme_Dialog_TextAppearance_Medium" parent="android:TextAppearance.DeviceDefault.Medium">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blue_android_material</item>
+        <item name="android:textColorPrimary">@color/caldroid_light_red</item>
     </style>
 
-    <style name="Button.Borderless.AppTheme.Dialog" parent="android:Widget.DeviceDefault.Button.Borderless">
+    <style name="AppTheme_Dialog_WindowStyles">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.DeviceDefault.DialogWindowTitle</item>
+        <item name="android:windowTitleStyle">@style/AppTheme_Dialog_WindowTitleStyle</item>
+    </style>
 
+    <style name="AppTheme_Dialog_WindowTitleStyle" parent="android:TextAppearance.DeviceDefault.DialogWindowTitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+    </style>
+
+    <style name="AppTheme_Dialog_CheckedTextViewStyle">
+        <item name="android:textAppearance">@style/AppTheme_Dialog_TextAppearance_Medium</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="AppTheme_Dialog_TextViewStyle">
+        <item name="android:textColor">@color/blue_android_material</item>
     </style>
 </resources>

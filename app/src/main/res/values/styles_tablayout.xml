@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.TabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/grey_lighter</item>
+        <item name="tabIndicatorHeight">6dp</item>
+        <item name="tabPaddingStart">20dp</item>
+        <item name="tabPaddingEnd">20dp</item>
+        <item name="tabTextAppearance">@style/AppTheme.TabLayout.TextAppereance</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+        <item name="android:background">@drawable/drawer_header_gradient</item>
+    </style>
+
+    <style name="AppTheme.TabLayout.TextAppereance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">true</item>
+    </style>
+</resources>

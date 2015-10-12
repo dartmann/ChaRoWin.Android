@@ -1,6 +1,11 @@
 package de.davidartmann.charowin.adapter.user;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +21,7 @@ import java.util.List;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.user.model.UserElement;
+import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
  * Adapter class for the listview of the user view.

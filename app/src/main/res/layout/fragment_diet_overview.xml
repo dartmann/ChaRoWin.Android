@@ -7,11 +7,12 @@
     android:orientation="vertical"
     android:id="@+id/fragment_diet_meallist_linearlayout"
     >
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/fragment_diet_overview_pagerslidingtabstrip"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/fragment_diet_overview_tablayout"
         android:layout_width="match_parent"
         android:layout_height="48dip"
-        app:pstsIndicatorColor="@color/green"
+        style="@style/AppTheme.TabLayout"
+        app:tabMode="scrollable"
         />
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"

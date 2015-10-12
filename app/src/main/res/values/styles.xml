@@ -1,20 +1,21 @@
 <resources>
 
-    <!-- Base application theme. -->
     <!-- Because we get a NP, the default theme ("Theme.AppCompat.Light.DarkActionBar") is replaced by: -->
     <!-- @android:style/Theme.Holo.Light.DarkActionBar -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
         <!-- Main theme colors -->
         <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black_light</item>
+        <!--NOT POSSIBLE -_- (<API21) <item name="android:colorAccent">@color/green</item-->
         <item name="android:textColor">@color/black</item>
         <item name="android:windowBackground">@android:color/white</item>
-        <!-- Customize your theme here. -->
         <item name="android:button">@color/green_light</item>
         <!-- custom drawer_list_item activated color -->
         <item name="android:activatedBackgroundIndicator">@drawable/drawer_list_selector</item>
         <!--NOT POSSIBLE -_- (<API21) item name="android:colorPrimary">@color/green</item-->
         <item name="android:popupMenuStyle">@style/AppTheme.PopupMenu</item>
         <item name="android:panelFullBackground">@android:color/white</item>
+        <item name="android:alertDialogTheme">@style/AppTheme_Dialog</item>
     </style>
 
     <style name="AppTheme.ActionBar" parent="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -31,23 +32,4 @@
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">true</item>
     </style>
-
-    <!-- change app style to poison green -->
-    <color name="green">#3CF527</color>
-    <color name="green_light">#BCFFB5</color>
-    <color name="green_light_activated">#A2DB9C</color>
-    <color name="orange">#FF5722</color>
-    <color name="orange_dark">#E65122</color>
-    <color name="orange_light">#FF835C</color>
-    <color name="blue">#2196f3</color>
-    <color name="blue_android_material">#33b5e5</color>
-    <color name="brown">#822700</color>
-    <color name="brown_dark">#571b01</color>
-    <color name="black">#000000</color>
-    <color name="grey">#9C9C9C</color>
-    <color name="grey_light">#D4D4D4</color>
-    <color name="grey_lighter">#E8E8E8</color>
-    <color name="rose">#ff9e75</color>
-    <color name="rose_light">#fcdccf</color>
-    <color name="white">#fff</color>
 </resources>
