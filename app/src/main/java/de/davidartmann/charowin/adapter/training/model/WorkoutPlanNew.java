@@ -5,15 +5,15 @@ package de.davidartmann.charowin.adapter.training.model;
  *
  * Created by David on 08.10.2015.
  */
-public class WorkoutPlan {
+public class WorkoutPlanNew {
 
     private String name;
     private String description;
     private String amountDays;
 
-    public WorkoutPlan() {}
+    public WorkoutPlanNew() {}
 
-    public WorkoutPlan(String name, String description, String amountDays) {
+    public WorkoutPlanNew(String name, String description, String amountDays) {
         this.name = name;
         this.description = description;
         this.amountDays = amountDays;

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.training.TrainingFragmentWorkoutPlanListAdapter;
-import de.davidartmann.charowin.adapter.training.model.WorkoutPlan;
+import de.davidartmann.charowin.adapter.training.TrainingFragmentWorkoutPlanListAdapterNew;
+import de.davidartmann.charowin.adapter.training.model.WorkoutPlanNew;
 import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
@@ -37,8 +37,8 @@ public class TrainingFragmentWorkoutPlanList extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mView.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        List<WorkoutPlan> workoutPlans = createWorkouts();
-        RecyclerView.Adapter mAdapter = new TrainingFragmentWorkoutPlanListAdapter(workoutPlans);
+        List<WorkoutPlanNew> workoutPlans = createWorkouts();
+        RecyclerView.Adapter mAdapter = new TrainingFragmentWorkoutPlanListAdapterNew(workoutPlans);
         mRecyclerView.setAdapter(mAdapter);
         ImageView imageViewSettings =
                 (ImageView) mView.findViewById(R.id.fragment_training_workoutplanlist_cardlayout_imageview_settings);
@@ -53,10 +53,10 @@ public class TrainingFragmentWorkoutPlanList extends Fragment {
         return mView;
     }
 
-    private List<WorkoutPlan> createWorkouts() {
-        List<WorkoutPlan> workoutPlans = new ArrayList<>();
+    private List<WorkoutPlanNew> createWorkouts() {
+        List<WorkoutPlanNew> workoutPlans = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            WorkoutPlan workoutPlan = new WorkoutPlan("Name "+i, "Description "+i, String.valueOf(i));
+            WorkoutPlanNew workoutPlan = new WorkoutPlanNew("Name "+i, "Description "+i, String.valueOf(i));
             workoutPlans.add(workoutPlan);
         }
         return workoutPlans;

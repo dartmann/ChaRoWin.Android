@@ -11,18 +11,18 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.training.model.WorkoutPlan;
+import de.davidartmann.charowin.adapter.training.model.WorkoutPlanNew;
 
 /**
  * Adapter class for the list of exercise of a trainingsplan.
  *
  * Created by David on 08.10.2015.
  */
-public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter<TrainingFragmentWorkoutPlanListAdapter.ViewHolder> {
+public class TrainingFragmentWorkoutPlanListAdapterNew extends RecyclerView.Adapter<TrainingFragmentWorkoutPlanListAdapterNew.ViewHolder> {
 
-    private List<WorkoutPlan> workoutPlans;
+    private List<WorkoutPlanNew> workoutPlans;
 
-    public TrainingFragmentWorkoutPlanListAdapter(List<WorkoutPlan> workoutPlans) {
+    public TrainingFragmentWorkoutPlanListAdapterNew(List<WorkoutPlanNew> workoutPlans) {
         this.workoutPlans = workoutPlans;
     }
 
@@ -62,7 +62,7 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        WorkoutPlan workoutPlan = workoutPlans.get(position);
+        WorkoutPlanNew workoutPlan = workoutPlans.get(position);
         holder.mTextViewName.setText(workoutPlan.getName());
         holder.mTextViewDescription.setText(workoutPlan.getDescription());
         holder.mTextViewAmountDays.setText(workoutPlan.getAmountDays());
