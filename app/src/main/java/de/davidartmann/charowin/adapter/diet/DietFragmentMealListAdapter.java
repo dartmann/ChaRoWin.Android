@@ -2,6 +2,7 @@ package de.davidartmann.charowin.adapter.diet;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.diet.model.Meal;
+import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
  * Adapter class for the list of exercise of a trainingsplan.
@@ -23,18 +25,22 @@ import de.davidartmann.charowin.adapter.diet.model.Meal;
  */
 public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragmentMealListAdapter.ViewHolder> {
 
+    private static final String DIET_FRAGMENT_MEALLIST_ADAPTER =
+            DietFragmentDietplanListAdapter.class.getSimpleName();
+
     private List<Meal> meals;
 
     public DietFragmentMealListAdapter(List<Meal> meals) {
         this.meals = meals;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView mImageViewMealIcon;
         public TextView mTextViewMealName;
         public TextView mTextViewMealTime;
         public TextView mTextViewEnergyKcal;
-        private Context context;
+        private Context mContext;
+        private ImageView mImageViewSettings;
 
         public ViewHolder(View view) {
             super(view);
@@ -42,7 +48,22 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
             mTextViewMealName = (TextView) view.findViewById(R.id.fragment_diet_meallist_cardview_textview_mealname);
             mTextViewMealTime = (TextView) view.findViewById(R.id.fragment_diet_meallist_cardview_textview_mealtime);
             mTextViewEnergyKcal = (TextView) view.findViewById(R.id.fragment_diet_meallist_cardview_textview_energykcal);
-            context = view.getContext();
+            mContext = view.getContext();
+            mImageViewSettings =
+                    (ImageView) view.findViewById(R.id.fragment_diet_meallist_cardview_imageview_settings);
+            mImageViewSettings.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.fragment_diet_meallist_cardview_imageview_settings:
+                    CustomSnackBar.create(v, "Einstellungen zeigen", null, null);
+                    break;
+                default:
+                    Log.w(DIET_FRAGMENT_MEALLIST_ADAPTER, "Default path in onClick()");
+            }
+
         }
     }
 
@@ -68,7 +89,7 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Meal meal = meals.get(position);
-        Picasso.with(holder.context)
+        Picasso.with(holder.mContext)
                 .load(meal.getImageUrl())
                 .placeholder(android.R.drawable.ic_menu_add)
                 .error(android.R.drawable.ic_menu_delete)

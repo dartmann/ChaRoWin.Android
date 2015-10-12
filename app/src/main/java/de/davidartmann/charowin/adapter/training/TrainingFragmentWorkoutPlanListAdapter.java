@@ -2,9 +2,12 @@ package de.davidartmann.charowin.adapter.training;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,6 +15,7 @@ import java.util.List;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.training.model.WorkoutPlan;
+import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
  * Adapter class for the list of exercise of a trainingsplan.
@@ -20,17 +24,23 @@ import de.davidartmann.charowin.adapter.training.model.WorkoutPlan;
  */
 public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter<TrainingFragmentWorkoutPlanListAdapter.ViewHolder> {
 
+    private static final String TRAINING_FRAGMENT_WORKOUT_PLANLIST_ADAPTER =
+            TrainingFragmentWorkoutPlanListAdapter.class.getSimpleName();
+
     private List<WorkoutPlan> workoutPlans;
 
     public TrainingFragmentWorkoutPlanListAdapter(List<WorkoutPlan> workoutPlans) {
         this.workoutPlans = workoutPlans;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextViewName;
-        public TextView mTextViewDescription;
-        public TextView mTextViewAmountDays;
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView mTextViewName;
+        private TextView mTextViewDescription;
+        private TextView mTextViewAmountDays;
         private Context context;
+        private ImageView mImageViewSettings;
+        private ImageView mImageViewPinAsCurrent;
+        private LinearLayout mLinearLayoutCard;
 
         public ViewHolder(View view) {
             super(view);
@@ -38,6 +48,33 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
             mTextViewDescription = (TextView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_textview_workoutdescription);
             mTextViewAmountDays = (TextView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_textview_amountdays);
             context = view.getContext();
+            mImageViewSettings =
+                    (ImageView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_imageview_settings);
+            mImageViewSettings.setOnClickListener(this);
+            mImageViewPinAsCurrent =
+                (ImageView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_imageview_pinascurrent);
+            mImageViewPinAsCurrent.setOnClickListener(this);
+            mLinearLayoutCard =
+                (LinearLayout) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_linearlayout_card);
+            mLinearLayoutCard.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.fragment_training_workoutplanlist_cardview_imageview_settings:
+                    CustomSnackBar.create(v, "Einstellungen zeigen", null, null);
+                    break;
+                case R.id.fragment_training_workoutplanlist_cardview_imageview_pinascurrent:
+                    //TODO: check if another plan is pinned as current, then reset its image first
+                    mImageViewPinAsCurrent.setImageResource(R.drawable.ic_favorite_black_48dp);
+                    break;
+                case R.id.fragment_training_workoutplanlist_cardview_linearlayout_card:
+                    CustomSnackBar.create(v, "Einzelnes Workout in DialogView zeigen?", null, null);
+                    break;
+                default:
+                    Log.w(TRAINING_FRAGMENT_WORKOUT_PLANLIST_ADAPTER, "Default path in onCreate()");
+            }
         }
     }
 
@@ -66,6 +103,7 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
         holder.mTextViewName.setText(workoutPlan.getName());
         holder.mTextViewDescription.setText(workoutPlan.getDescription());
         holder.mTextViewAmountDays.setText(workoutPlan.getAmountDays());
+        //TODO: check which plan is pinned as current or if none
     }
 
     /**

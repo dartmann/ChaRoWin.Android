@@ -45,8 +45,8 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.4'
     //Interactive paging indicator widget
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
-    //customizable dialogs API
+    /*customizable dialogs API
     compile('com.afollestad.material-dialogs:core:0.8.2.0@aar') {
         transitive = true
-    }
+    }*/
 }

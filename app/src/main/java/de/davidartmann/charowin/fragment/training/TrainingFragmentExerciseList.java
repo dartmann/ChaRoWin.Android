@@ -11,10 +11,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +29,11 @@ import de.davidartmann.charowin.util.CustomSnackBar;
  *
  * Created by David on 05.10.2015.
  */
-public class TrainingFragmentExerciseList extends Fragment {
+public class TrainingFragmentExerciseList extends Fragment implements View.OnClickListener {
 
-//    private static final String TRAINING_FRAGMENT_EXERCISELIST =
-//            TrainingFragmentExerciseList.class.getSimpleName();
+    private static final String TRAINING_FRAGMENT_EXERCISELIST =
+            TrainingFragmentExerciseList.class.getSimpleName();
+
     //TODO: view as class attr necessary?
     private View mView;
 
@@ -50,10 +51,7 @@ public class TrainingFragmentExerciseList extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         FloatingActionButton floatingActionButton =
                 (FloatingActionButton) mView.findViewById(R.id.fragment_training_exerciselist_floatingactionbutton);
-        floatingActionButton.setOnClickListener(new FabClickListener());
-        ImageView imageViewSettings =
-                (ImageView) mView.findViewById(R.id.fragment_training_exerciselist_cardlayout_imageview_settings);
-        imageViewSettings.setOnClickListener(new ImageViewSettingsClickListener());
+        floatingActionButton.setOnClickListener(this);
         return mView;
     }
 
@@ -107,29 +105,14 @@ public class TrainingFragmentExerciseList extends Fragment {
         }
     }
 
-    private class ImageViewSettingsClickListener implements View.OnClickListener {
-
-        /**
-         * Called when a view has been clicked.
-         *
-         * @param v The view that was clicked.
-         */
-        @Override
-        public void onClick(View v) {
-            CustomSnackBar.create(mView, "Einstellungen zeigen", null, null);
-        }
-    }
-
-    private class FabClickListener implements View.OnClickListener {
-
-        /**
-         * Called when a view has been clicked.
-         *
-         * @param v The view that was clicked.
-         */
-        @Override
-        public void onClick(View v) {
-            showExerciseAddDialog();
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fragment_training_exerciselist_floatingactionbutton:
+                showExerciseAddDialog();
+                break;
+            default:
+                Log.d(TRAINING_FRAGMENT_EXERCISELIST, "Default path in onClick()");
         }
     }
 }

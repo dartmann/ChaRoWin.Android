@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,10 @@ import de.davidartmann.charowin.util.CustomSnackBar;
  *
  * Created by David on 05.10.2015.
  */
-public class DietFragmentMealList extends Fragment {
+public class DietFragmentMealList extends Fragment implements View.OnClickListener {
 
-//    private static final String DIET_FRAGMENT_MEALLIST =
-//            DietFragmentMealList.class.getSimpleName();
+    private static final String DIET_FRAGMENT_MEALLIST =
+            DietFragmentMealList.class.getSimpleName();
 
     @Nullable
     @Override
@@ -44,10 +45,7 @@ public class DietFragmentMealList extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         FloatingActionButton fab =
                 (FloatingActionButton) view.findViewById(R.id.fragment_diet_meallist_floatingactionbutton);
-        fab.setOnClickListener(new FabClickListener());
-        ImageView imageViewSettings =
-                (ImageView) view.findViewById(R.id.fragment_diet_meallist_cardview_imageview_settings);
-        imageViewSettings.setOnClickListener(new ImageViewSettingsClickListener());
+        fab.setOnClickListener(this);
         return view;
     }
 
@@ -110,29 +108,9 @@ public class DietFragmentMealList extends Fragment {
         return meals;
     }
 
-    private class ImageViewSettingsClickListener implements View.OnClickListener {
-
-        /**
-         * Called when a view has been clicked.
-         *
-         * @param v The view that was clicked.
-         */
-        @Override
-        public void onClick(View v) {
-            CustomSnackBar.create(v, "Einstellungen zeigen", null, null);
-        }
-    }
-
-    private class FabClickListener implements View.OnClickListener {
-
-        /**
-         * Called when a view has been clicked.
-         *
-         * @param v The view that was clicked.
-         */
-        @Override
-        public void onClick(View v) {
-            //TODO: show dialog to save new meal
-        }
+    @Override
+    public void onClick(View v) {
+        Log.d(DIET_FRAGMENT_MEALLIST, "FAB click");
+        //TODO: show dialog to save new meal
     }
 }

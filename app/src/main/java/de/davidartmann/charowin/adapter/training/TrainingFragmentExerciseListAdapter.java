@@ -1,7 +1,13 @@
 package de.davidartmann.charowin.adapter.training;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +21,7 @@ import java.util.List;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.training.model.Exercise;
+import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
  * Adapter class for the list of exercise of a trainingsplan.
@@ -23,19 +30,23 @@ import de.davidartmann.charowin.adapter.training.model.Exercise;
  */
 public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<TrainingFragmentExerciseListAdapter.ViewHolder> {
 
+    private static final String TRAINING_FRAGMENT_EXERCISELIST_ADAPTER =
+            TrainingFragmentExerciseListAdapter.class.getSimpleName();
+
     private List<Exercise> exercises;
 
     public TrainingFragmentExerciseListAdapter(List<Exercise> exercises) {
         this.exercises = exercises;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView mImageViewExerciseIcon;
         public TextView mTextViewExerciseName;
         public TextView mTextViewSets;
         public TextView mTextViewReps;
         public TextView mTextViewRestTime;
         private Context context;
+        private ImageView mImageViewSettings;
 
         public ViewHolder(View view) {
             super(view);
@@ -45,6 +56,19 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
             mTextViewReps = (TextView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_textview_reps);
             mTextViewRestTime = (TextView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_textview_resttime);
             context = view.getContext();
+            mImageViewSettings = (ImageView) view.findViewById(R.id.fragment_training_exerciselist_cardlayout_imageview_settings);
+            mImageViewSettings.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.fragment_training_exerciselist_cardlayout_imageview_settings:
+                    CustomSnackBar.create(v, "Einstellungen zeigen", null, null);
+                    break;
+                default:
+                    Log.d(TRAINING_FRAGMENT_EXERCISELIST_ADAPTER, "Default path in onClick()");
+            }
         }
     }
 
