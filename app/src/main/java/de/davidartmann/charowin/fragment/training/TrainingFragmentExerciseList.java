@@ -2,16 +2,19 @@ package de.davidartmann.charowin.fragment.training;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +29,12 @@ import de.davidartmann.charowin.util.CustomSnackBar;
  *
  * Created by David on 05.10.2015.
  */
-public class TrainingFragmentExerciseList extends Fragment implements View.OnClickListener {
+public class TrainingFragmentExerciseList extends Fragment {
 
 //    private static final String TRAINING_FRAGMENT_EXERCISELIST =
 //            TrainingFragmentExerciseList.class.getSimpleName();
+    //TODO: view as class attr necessary?
     private View mView;
-
 
     @Nullable
     @Override
@@ -47,7 +50,10 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
         mRecyclerView.setAdapter(mAdapter);
         FloatingActionButton floatingActionButton =
                 (FloatingActionButton) mView.findViewById(R.id.fragment_training_exerciselist_floatingactionbutton);
-        floatingActionButton.setOnClickListener(this);
+        floatingActionButton.setOnClickListener(new FabClickListener());
+        ImageView imageViewSettings =
+                (ImageView) mView.findViewById(R.id.fragment_training_exerciselist_cardlayout_imageview_settings);
+        imageViewSettings.setOnClickListener(new ImageViewSettingsClickListener());
         return mView;
     }
 
@@ -66,30 +72,64 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
     }
 
     private void showExerciseAddDialog() {
-        CustomSnackBar.create(getView(), "Übung wurde gespeichert", null, null);
         if (mView != null) {
-//            Dialog dialog = new Dialog(mView.getContext(), android.R.style.Theme_Material_Light_Dialog_Alert);
-            AlertDialog.Builder builder = new AlertDialog.Builder(
-                    getActivity(), android.R.style.Theme_Material_Light_Dialog_Alert);
+            AlertDialog.Builder builder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new AlertDialog.Builder(
+                        getActivity(), android.R.style.Theme_Material_Light_Dialog_Alert);
+            } else {
+                builder = new AlertDialog.Builder(
+                        getActivity(), android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
+            }
             builder.setTitle("Neue Übung");
             builder.setView(getActivity().getLayoutInflater().inflate(
                     R.layout.fragment_training_exerciselist_dialog, null))
                 .setPositiveButton("Speichern", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        CustomSnackBar.create(mView, "Übung wurde gespeichert", null, null);
                         //TODO: save exercise
                     }
                 })
                 .setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO: show snackbar?
+                        //nothing to do
                     }
                 });
-            builder.create().show();
+            Dialog dialog = builder.create();
+//            dialog.setTitle("Neue Übung");
+            dialog.show();
+            //claiming divider color is only possible to change programmatically
+            int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
+            View titleDividerView = dialog.findViewById(titleDividerId);
+            if (titleDividerView != null) {
+                titleDividerView.setBackgroundColor(ContextCompat.getColor(mView.getContext(), R.color.green));
+            }
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        showExerciseAddDialog();
+    private class ImageViewSettingsClickListener implements View.OnClickListener {
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+            CustomSnackBar.create(mView, "Einstellungen zeigen", null, null);
+        }
+    }
+
+    private class FabClickListener implements View.OnClickListener {
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+            showExerciseAddDialog();
+        }
     }
 }

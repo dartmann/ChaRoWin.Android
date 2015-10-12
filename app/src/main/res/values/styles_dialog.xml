@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.Dialog" parent="android:Theme.DeviceDefault.Light.Dialog.MinWidth">
+        <item name="android:textColorPrimary">@color/green</item>
+        <item name="android:textAppearanceMedium">@style/TextAppearance.Meadium.AppTheme.Dialog</item>
+        <item name="android:borderlessButtonStyle">@style/Button.Borderless.AppTheme.Dialog</item>
+    </style>
+
+    <style name="TextAppearance.Meadium.AppTheme.Dialog" parent="android:TextAppearance.DeviceDefault.Medium">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Button.Borderless.AppTheme.Dialog" parent="android:Widget.DeviceDefault.Button.Borderless">
+
+    </style>
+</resources>

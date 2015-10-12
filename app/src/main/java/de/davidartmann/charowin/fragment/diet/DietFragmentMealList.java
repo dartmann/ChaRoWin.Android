@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +17,17 @@ import java.util.List;
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.diet.DietFragmentMealListAdapter;
 import de.davidartmann.charowin.adapter.diet.model.Meal;
+import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
  * Adapter class for the meal list.
  *
  * Created by David on 05.10.2015.
  */
-public class DietFragmentMealList extends Fragment implements View.OnClickListener{
+public class DietFragmentMealList extends Fragment {
 
-    private static final String DIET_FRAGMENT_MEALLIST =
-            DietFragmentMealList.class.getSimpleName();
+//    private static final String DIET_FRAGMENT_MEALLIST =
+//            DietFragmentMealList.class.getSimpleName();
 
     @Nullable
     @Override
@@ -33,21 +35,26 @@ public class DietFragmentMealList extends Fragment implements View.OnClickListen
         //TODO: just for testing, delete afterwards:
         List<Meal> meals = createMockupMeals();
         View view = inflater.inflate(R.layout.fragment_diet_meallist, container, false);
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_diet_meallist_recyclerview);
+        RecyclerView mRecyclerView =
+                (RecyclerView) view.findViewById(R.id.fragment_diet_meallist_recyclerview);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new DietFragmentMealListAdapter(meals);
         mRecyclerView.setAdapter(mAdapter);
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fragment_diet_meallist_floatingactionbutton);
-        fab.setOnClickListener(this);
+        FloatingActionButton fab =
+                (FloatingActionButton) view.findViewById(R.id.fragment_diet_meallist_floatingactionbutton);
+        fab.setOnClickListener(new FabClickListener());
+        ImageView imageViewSettings =
+                (ImageView) view.findViewById(R.id.fragment_diet_meallist_cardview_imageview_settings);
+        imageViewSettings.setOnClickListener(new ImageViewSettingsClickListener());
         return view;
     }
 
     private List<Meal> createMockupMeals() {
         List<Meal> meals = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
-            Meal meal = null;
+            Meal meal;
             switch (i) {
                 case 0:
                     meal = new Meal(
@@ -103,8 +110,29 @@ public class DietFragmentMealList extends Fragment implements View.OnClickListen
         return meals;
     }
 
-    @Override
-    public void onClick(View v) {
-        //TODO: show dialog and afterwards show snackbar
+    private class ImageViewSettingsClickListener implements View.OnClickListener {
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+            CustomSnackBar.create(v, "Einstellungen zeigen", null, null);
+        }
+    }
+
+    private class FabClickListener implements View.OnClickListener {
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+            //TODO: show dialog to save new meal
+        }
     }
 }
