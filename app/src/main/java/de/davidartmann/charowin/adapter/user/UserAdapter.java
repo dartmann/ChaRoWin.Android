@@ -1,12 +1,8 @@
 package de.davidartmann.charowin.adapter.user;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +14,10 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.user.model.UserElement;
-import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
  * Adapter class for the listview of the user view.
@@ -32,34 +28,98 @@ public class UserAdapter extends ArrayAdapter<UserElement> {
 
     private static final String USER_ADAPTER = UserAdapter.class.getSimpleName();
 
-    private final Context context;
+    private final Context mContext;
     private final int layoutResourceId;
-    private List<UserElement> userElements;
+    private List<UserElement> mUserElements;
 
     public UserAdapter(Context context, int layoutResourceId, List<UserElement> userElements) {
         super(context, layoutResourceId, userElements);
-        this.context = context;
+        this.mContext = context;
         this.layoutResourceId = layoutResourceId;
-        this.userElements = userElements;
+        this.mUserElements = userElements;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param position
+     */
+    @Override
+    public UserElement getItem(int position) {
+        UserElement userElement = null;
+        if (mUserElements != null) {
+            userElement = mUserElements.get(position);
+        }
+        return userElement;
+    }
+
+    public UserElement setValue(String value, int position) {
+        UserElement userElement = null;
+        if (value != null) {
+            userElement = getItem(position);
+            if (userElement != null) {
+                mUserElements.remove(position);
+                userElement.setSubHeadline(value);
+                mUserElements.add(position, userElement);
+                notifyDataSetChanged();
+            } else {
+                Log.w(USER_ADAPTER, "Invalid position in setValue()");
+            }
+        } else {
+            Log.w(USER_ADAPTER, "Null value in setValue()");
+        }
+        return userElement;
+    }
+
+    /**
+     * Returns the context associated with this array adapter. The context is used
+     * to create views from the resource passed to the constructor.
+     *
+     * @return The Context associated with this adapter.
+     */
+    @Override
+    public Context getContext() {
+        Context context = null;
+        if (mContext != null) {
+            context = mContext;
+        }
+        return context;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
+        UserElement userElement = mUserElements.get(position);
+        Integer icon = null;
+        String headline = "";
+        String subHeadline = "";
+        Boolean isCheckable = false;
+        if (userElement.getHeadline() != null) {
+            headline = userElement.getHeadline();
+        }
+        if (userElement.getSubHeadline() != null) {
+            subHeadline = userElement.getSubHeadline();
+        }
+        if (userElement.isCheckableItem()) {
+            isCheckable = userElement.isCheckableItem();
+        }
+        if (userElement.getIcon() != null) {
+            icon = userElement.getIcon();
+        }
         if (position == 0 || position == 4 || position == 8) {
             view = LayoutInflater
                     .from(parent.getContext())
                     .inflate(R.layout.fragment_user_list_item_delimiter, parent, false);
-            TextView delimTitle = (TextView) view.findViewById(R.id.fragment_user_list_item_delimiter_textview_title);
+            TextView textViewDelimTitle = (TextView) view.findViewById(R.id.fragment_user_list_item_delimiter_textview_title);
             switch (position) {
                 case 0:
-                    delimTitle.setText("Profil");
+                    textViewDelimTitle.setText(headline);
                     break;
                 case 4:
-                    delimTitle.setText("Generelles");
+                    textViewDelimTitle.setText(headline);
                     break;
                 case 8:
-                    delimTitle.setText("Energiesparen");
+                    textViewDelimTitle.setText(headline);
                     break;
                 default:
                     Log.w(USER_ADAPTER, "default path in getItem() of cases 0, 4 and 8");
@@ -68,41 +128,47 @@ public class UserAdapter extends ArrayAdapter<UserElement> {
             view = LayoutInflater
                     .from(parent.getContext())
                     .inflate(R.layout.fragment_user_list_item, parent, false);
-            ImageView icon = (ImageView) view.findViewById(R.id.fragment_user_list_item_imageview_icon);
-            TextView headline = (TextView) view.findViewById(R.id.fragment_user_list_item_textview_headline);
-            TextView subHeadline = (TextView) view.findViewById(R.id.fragment_user_list_item_textview_subheadline);
+            ImageView imageViewIcon = (ImageView) view.findViewById(R.id.fragment_user_list_item_imageview_icon);
+            TextView textViewHeadline = (TextView) view.findViewById(R.id.fragment_user_list_item_textview_headline);
+            TextView textViewSubHeadline = (TextView) view.findViewById(R.id.fragment_user_list_item_textview_subheadline);
             CheckBox checkBox = (CheckBox) view.findViewById(R.id.fragment_user_list_item_checkbox);
             checkBox.setVisibility(View.GONE);
             switch (position) {
                 case 1:
-                    headline.setText("Geschlecht");
-                    subHeadline.setText("Männlich");
+                    textViewHeadline.setText(headline);
+                    textViewSubHeadline.setText(userElement.getSubHeadline());
                     break;
                 case 2:
-                    headline.setText("Geburtsdatum");
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
-                    subHeadline.setText(simpleDateFormat.format(new Date()));
+                    textViewHeadline.setText(headline);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+                    if (!subHeadline.equals("")) {
+                        textViewSubHeadline.setText(simpleDateFormat.format(new Date(Long.parseLong(subHeadline))));
+                    }
                     break;
                 case 3:
-                    headline.setText("Privatssphäre");
+                    if (icon != null) {
+                        imageViewIcon.setImageResource(icon);
+                    }
+                    textViewHeadline.setText(headline);
+                    textViewSubHeadline.setText(subHeadline);
                     break;
                 case 5:
-                    headline.setText("Sprache");
-                    subHeadline.setText("Deutsch");
+                    textViewHeadline.setText(headline);
+                    textViewSubHeadline.setText(subHeadline);
                     break;
                 case 6:
-                    headline.setText("Standard Pause Alarm");
-                    subHeadline.setText("Nur Sound");
+                    textViewHeadline.setText(headline);
+                    textViewSubHeadline.setText(subHeadline);
                     break;
                 case 7:
-                    headline.setText("Standard Einheit");
-                    subHeadline.setText("cm / kg");
+                    textViewHeadline.setText(headline);
+                    textViewSubHeadline.setText(subHeadline);
                     break;
                 case 9:
-                    headline.setText("Pause Bildschirm aktiv");
-                    subHeadline.setText("An");
+                    textViewHeadline.setText(headline);
+                    textViewSubHeadline.setText(subHeadline);
                     checkBox.setVisibility(View.VISIBLE);
-                    checkBox.setChecked(true);
+                    checkBox.setChecked(isCheckable);
                     break;
                 default:
                     Log.w(USER_ADAPTER, "default path in else path of switch case");

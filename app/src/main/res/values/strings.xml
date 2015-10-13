@@ -37,7 +37,7 @@
     </string-array>
 
     <!-- GenderChooserDialog -->
-    <string-array name="gender_chooser_dialog">
+    <string-array name="fragment_user_gender_chooser_dialog">
         <item>Männlich</item>
         <item>Weiblich</item>
     </string-array>

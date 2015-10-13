@@ -1,5 +1,6 @@
 package de.davidartmann.charowin;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import de.davidartmann.charowin.adapter.drawer.model.DrawerItem;
 import de.davidartmann.charowin.fragment.diet.DietFragmentOverview;
 import de.davidartmann.charowin.fragment.top.TopFragment;
 import de.davidartmann.charowin.fragment.training.TrainingFragmentOverview;
@@ -56,31 +56,6 @@ public class MainActivityNew extends AppCompatActivity
         mNavigationView = (NavigationView) findViewById(R.id.drawer_list_view_new);
         mNavigationView.setNavigationItemSelectedListener(this);
 
-//        mDrawerToggle = new ActionBarDrawerToggle(
-//                this,
-//                mDrawerLayout,
-//                R.string.drawer_open,
-//                R.string.drawer_close) {
-//
-//            /** Called when a drawer has settled in a completely open state. */
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                // creates call to onPrepareOptionsMenu()
-//                invalidateOptionsMenu();
-//            }
-
-            /** Called when a drawer has settled in a completely closed state. */
-//            public void onDrawerClosed(View drawerView) {
-//                super.onDrawerClosed(drawerView);
-//                // creates call to onPrepareOptionsMenu()
-//                invalidateOptionsMenu();
-//            }
-//        };
-
-        // Set the drawer toggle as the DrawerListener
-//        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        //if not saved state, we want to display main(:= top) view
         if (savedInstanceState == null) {
             replaceFragment(new TopFragment());
         }
@@ -119,64 +94,6 @@ public class MainActivityNew extends AppCompatActivity
         return super.onPrepareOptionsMenu(menu);
     }
 
-    /**
-     * Method to set the fragment for the clicked DrawerItem.
-     * @param position the postition of the clicked DrawerItem
-     */
-    private void selectItem(int position) {
-        Fragment fragment;
-        switch (position) {
-            case 0:
-                fragment = new UserFragment();
-                replaceFragment(fragment);
-                break;
-            case 1:
-                fragment = new TopFragment();
-                replaceFragment(fragment);
-                break;
-            case 2:
-                fragment = new TrainingFragmentOverview();
-                replaceFragment(fragment);
-                break;
-            case 3:
-                fragment = new DietFragmentOverview();
-                replaceFragment(fragment);
-                break;
-            case 4:
-                fragment = new TopFragment();
-                replaceFragment(fragment);
-                Toast.makeText(this, "settings soon to come", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                Log.w(MAIN_ACTIVITY, "Default path in selectItem()");
-                fragment = new TopFragment();
-                replaceFragment(fragment);
-        }
-        setActionBarTitle(position);
-        //we do not want to check the clicked item
-//        mDrawerListView.setItemChecked(position, true);
-//        mDrawerLayout.closeDrawer(mDrawerListView);
-        mDrawerLayout.closeDrawer(mNavigationView);
-    }
-
-    /**
-     * When using the ActionBarDrawerToggle, you must call it during
-     * onPostCreate() and onConfigurationChanged()...
-     */
-
-//    @Override
-//    protected void onPostCreate(Bundle savedInstanceState) {
-//        super.onPostCreate(savedInstanceState);
-//        //Sync the toggle state after onRestoreInstanceState has occurred.
-//        mDrawerToggle.syncState();
-//    }
-//
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//        mDrawerToggle.onConfigurationChanged(newConfig);
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -207,20 +124,6 @@ public class MainActivityNew extends AppCompatActivity
      * @param fragment the Fragment which will be replacing the actual
      */
     private void replaceFragment(Fragment fragment) {
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.drawer_frame_layout, fragment)
-//                /**
-//                 * removed this, to not add old fragment views on the stack, which then are
-//                 * accessible by tapping (hw/sw)back button
-//                 *
-//                 .addToBackStack(null)
-//                 *
-//                 * and added this to disallow the old behaviour
-//                */
-//                .disallowAddToBackStack()
-//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//                .commit();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.drawer_frame_layout, fragment)
@@ -254,48 +157,6 @@ public class MainActivityNew extends AppCompatActivity
         return true;
     }
 
-//    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-//
-//        @Override
-//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//            selectItem(position);
-//            setActionBarTitle(position);
-//        }
-//    }
-
-    /**
-     * Helper method to create the static DrawerItems
-     *
-     * @return List of {@link DrawerItem} entries for the NavigationDrawer
-     */
-//    private List<DrawerItem> createDrawerItems() {
-//        List<DrawerItem> drawerItems = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            DrawerItem drawerItem = null;
-//            switch (i) {
-//                case 0:
-//                    drawerItem = new DrawerItem(R.drawable.ic_person_black_48dp, "");
-//                    break;
-//                case 1:
-//                    drawerItem = new DrawerItem(R.drawable.ic_home_black_24dp, mTitles[i]);
-//                    break;
-//                case 2:
-//                    drawerItem = new DrawerItem(R.drawable.ic_flash_on_black_24dp, mTitles[i]);
-//                    break;
-//                case 3:
-//                    drawerItem = new DrawerItem(R.drawable.ic_local_dining_black_24dp, mTitles[i]);
-//                    break;
-//                case 4:
-//                    drawerItem = new DrawerItem(R.drawable.ic_settings_black_24dp, mTitles[i]);
-//                    break;
-//                default:
-//                    Log.e(MAIN_ACTIVITY, "Default branch in createDrawerItems()");
-//            }
-//            drawerItems.add(drawerItem);
-//        }
-//        return drawerItems;
-//    }
-
     /**
      * Called when a key was pressed down and not handled by any of the views
      * inside of the activity. So, for example, key presses while the cursor
@@ -328,18 +189,12 @@ public class MainActivityNew extends AppCompatActivity
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                /*
-                if (mDrawerLayout.isDrawerOpen(mDrawerListView)) {
-                    finish();
-                } else {
-                    mDrawerLayout.openDrawer(mDrawerListView);
-                }
-                return true;
-            */
                 if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
-                    finish();
+                    mDrawerLayout.closeDrawer(mNavigationView);
+//                    finish();
                 } else {
-                    mDrawerLayout.openDrawer(mNavigationView);
+//                    mDrawerLayout.openDrawer(mNavigationView);
+                    finish();
                 }
                 return true;
         }

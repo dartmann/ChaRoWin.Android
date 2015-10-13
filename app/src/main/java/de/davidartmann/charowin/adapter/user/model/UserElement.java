@@ -7,10 +7,12 @@ package de.davidartmann.charowin.adapter.user.model;
  */
 public class UserElement {
 
-    private int icon;
+    private Integer icon;
     private String headline;
     private String subHeadline;
     private boolean checkableItem;
+
+    public UserElement() {}
 
     public UserElement(int icon, String headline, String subHeadline, boolean checkableItem) {
         this.icon = icon;
@@ -19,11 +21,11 @@ public class UserElement {
         this.checkableItem = checkableItem;
     }
 
-    public int getIcon() {
+    public Integer getIcon() {
         return icon;
     }
 
-    public void setIcon(int icon) {
+    public void setIcon(Integer icon) {
         this.icon = icon;
     }
 
