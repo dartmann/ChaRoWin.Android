@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="green">#3CF527</color>
-    <color name="green_light">#BCFFB5</color>
-    <color name="green_light_activated">#A2DB9C</color>
+    <color name="green_darker">#1B6313</color>
     <color name="green_dark">#2EAD1F</color>
     <color name="green_dark_transcluent80">#CC2EAD1F</color>
-    <color name="green_darker">#1B6313</color>
+    <color name="green_header_center">#4CAF50</color>
+    <color name="green">#3CF527</color>
+    <color name="green_light_activated">#A2DB9C</color>
+    <color name="green_light">#BCFFB5</color>
+    <color name="green_lighter">#DFFFDB</color>
     <color name="orange">#FF5722</color>
     <color name="orange_dark">#E65122</color>
     <color name="orange_light">#FF835C</color>
@@ -15,6 +17,8 @@
     <color name="brown_dark">#571b01</color>
     <color name="black">#000000</color>
     <color name="black_light">#292929</color>
+    <color name="grey_darker">#454545</color>
+    <color name="grey_dark">#757575</color>
     <color name="grey">#9C9C9C</color>
     <color name="grey_light">#D4D4D4</color>
     <color name="grey_lighter">#E8E8E8</color>

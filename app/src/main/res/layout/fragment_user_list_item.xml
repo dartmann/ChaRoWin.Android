@@ -37,7 +37,7 @@
     </LinearLayout>
     <CheckBox
         android:id="@+id/fragment_user_list_item_checkbox"
-        android:layout_width="30dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
         android:layout_gravity="center"

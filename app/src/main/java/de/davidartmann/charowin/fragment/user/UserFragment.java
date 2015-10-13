@@ -1,15 +1,14 @@
 package de.davidartmann.charowin.fragment.user;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,7 @@ import de.davidartmann.charowin.util.CustomSnackBar;
  * Created by David on 06.10.2015.
  */
 public class UserFragment extends Fragment implements AdapterView.OnItemClickListener {
+
     private static final String USER_FRAGMENT = UserFragment.class.getSimpleName();
 
     private CharSequence[] mGenderStrings;
@@ -68,45 +68,48 @@ public class UserFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void showGenderChooserDialog(AdapterView<?> parent, final View view, int position, long id) {
         AlertDialog.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(
-                    new ContextThemeWrapper(
-                            view.getContext(), android.R.style.Theme_Material_Light_Dialog_Alert));
-        } else {
-            builder = new AlertDialog.Builder(
-                    view.getContext(), R.style.AppTheme_Dialog);
-//                    new ContextThemeWrapper(
-//                            view.getContext(), R.style.AppTheme_Dialog/*android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth)*/));
-        }
-        //TODO: make dialog nice (add lib?)
-        builder.setView(getActivity().getLayoutInflater().inflate(R.layout.fragment_user_dialog_genderchooser, null));
-        /*
-        builder.setSingleChoiceItems(mGenderStrings, -1, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        Log.d(USER_FRAGMENT, "Männlich ausgewählt");
-                        break;
-                    case 1:
-                        Log.d(USER_FRAGMENT, "Weiblich ausgewählt");
-                        break;
-                    default:
-                        Log.w(USER_FRAGMENT, "Default path in setSinglChoidItems()");
-                }
-                dialog.dismiss();
+        Context context = view.getContext();
+        if (context != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new AlertDialog.Builder(
+                        context, android.R.style.Theme_Material_Light_Dialog_Alert);
+            } else {
+                builder = new AlertDialog.Builder(
+                        context, R.style.ChaRoWin_AppCompatDialog);
             }
-        });
-        */
-        Dialog dialog = builder.create();
-        dialog.setTitle("Geschlecht");
-        dialog.show();
-        //claiming divider color is only possible to change programmatically
-        int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
-        View titleDividerView = dialog.findViewById(titleDividerId);
-        if (titleDividerView != null) {
-            titleDividerView.setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.green_dark));
+            builder.setSingleChoiceItems(mGenderStrings, -1, new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //TODO: save gender to user
+                    switch (which) {
+                        case 0:
+                            CustomSnackBar.create(view, "Männlich ausgewählt", null, null);
+                            break;
+                        case 1:
+                            CustomSnackBar.create(view, "Weiblich ausgewählt", null, null);
+                            break;
+                        default:
+                            Log.w(USER_FRAGMENT, "Default path in setSinglChoidItems()");
+                    }
+                    dialog.dismiss();
+                }
+            });
+            builder.setTitle("GESCHLECHT");
+            Dialog dialog = builder.create();
+            dialog.show();
+            /**
+             * not in use because of material design of dialogs
+             *
+             //claiming divider color is only possible to change programmatically
+             int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
+             View titleDividerView = dialog.findViewById(titleDividerId);
+             if (titleDividerView != null) {
+             titleDividerView.setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.green_dark));
+             }
+             */
+        } else {
+            Log.w(USER_FRAGMENT, "Themed context was null");
         }
     }
 }

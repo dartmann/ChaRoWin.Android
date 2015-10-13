@@ -27,24 +27,16 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
-    //Android Material Support libs
     compile 'com.android.support:cardview-v7:23.0.1'
     compile 'com.android.support:recyclerview-v7:23.0.1'
-    compile 'com.android.support:palette-v7:23.0.1'
-    //image downloading and caching library
     compile 'com.squareup.picasso:picasso:2.5.2'
-    //google's volley
     compile 'com.mcxiaoke.volley:library:1.0.19'
-    //add APIs for
     compile 'com.android.support:design:23.0.1'
-    //better circularImageView lib than "com.pkmmte.view:circularimageview"
     compile 'de.hdodenhof:circleimageview:2.0.0'
-    //add calender functionality
     compile 'com.roomorama:caldroid:2.2.0'
-    //charts
-    compile 'com.github.PhilJay:MPAndroidChart:v2.1.4'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.5'
     /*customizable dialogs API
-    compile('com.afollestad.material-dialogs:core:0.8.2.0@aar') {
+    compile('com.afollestad.material-dialogs:core:0.8.3.0@aar') {
         transitive = true
     }*/
 }
