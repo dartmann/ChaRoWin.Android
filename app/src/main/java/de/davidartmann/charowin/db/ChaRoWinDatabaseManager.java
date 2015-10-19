@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import de.davidartmann.charowin.db.model.DaoMaster;
+import de.davidartmann.charowin.db.model.DaoSession;
 import de.greenrobot.dao.async.AsyncOperation;
 import de.greenrobot.dao.async.AsyncOperationListener;
 import de.greenrobot.dao.async.AsyncSession;
