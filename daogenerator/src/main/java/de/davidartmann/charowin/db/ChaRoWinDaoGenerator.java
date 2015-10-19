@@ -51,14 +51,14 @@ public class ChaRoWinDaoGenerator {
                 workoutSession.addLongProperty("workout_id").notNull().getProperty();
         //----------------------m:n in Muscle:Exercise----------------------
         Property muscleIdForMuscleExercise =
-                muscle_exercise.addLongProperty("muscle_id").notNull().getProperty();
+                muscle_exercise.addLongProperty("muscle_id_for_muscle_exercise").notNull().getProperty();
         Property exerciseIdForMuscleExercise =
-                muscle_exercise.addLongProperty("exercise_id").notNull().getProperty();
+                muscle_exercise.addLongProperty("exercise_id_for_muscle_exercise").notNull().getProperty();
         //----------------------m:n in Exercise:Workout----------------------
         Property exerciseIdForExerciseWorkout =
-                exercise_workout.addLongProperty("exercise_id").notNull().getProperty();
+                exercise_workout.addLongProperty("exercise_id_for_exercise_workout").notNull().getProperty();
         Property workoutIdForExerciseWorkout =
-                exercise_workout.addLongProperty("workout_id").notNull().getProperty();
+                exercise_workout.addLongProperty("workout_id_for_exercise_workout").notNull().getProperty();
         //----------------------1:m in WorkoutPlan:Workout----------------------
         Property workoutPlanIdForWorkout =
                 workout.addLongProperty("workoutPlan_id").notNull().getProperty();
@@ -70,14 +70,14 @@ public class ChaRoWinDaoGenerator {
                 dietPlan.addLongProperty("user_id").notNull().getProperty();
         //----------------------m:n in DietPlan:Meal----------------------
         Property mealIdForMealDietPlan =
-                meal_dietPlan.addLongProperty("meal_id").notNull().getProperty();
+                meal_dietPlan.addLongProperty("meal_id_for_meal_dietplan").notNull().getProperty();
         Property dietPlanIdForMealDietPlan =
-                meal_dietPlan.addLongProperty("dietPlan_id").notNull().getProperty();
+                meal_dietPlan.addLongProperty("dietPlan_id_for_meal_dietplan").notNull().getProperty();
         //----------------------m:n in Food:Meal----------------------
         Property foodIdForFoodMeal =
-                food_meal.addLongProperty("food_id").notNull().getProperty();
+                food_meal.addLongProperty("food_id_for_food_meal").notNull().getProperty();
         Property mealIdForFoodMeal =
-                food_meal.addLongProperty("meal_id").notNull().getProperty();
+                food_meal.addLongProperty("meal_id_for_food_meal").notNull().getProperty();
         /**
          * Relations
          */
