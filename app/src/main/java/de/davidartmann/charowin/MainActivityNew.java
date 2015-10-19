@@ -1,6 +1,5 @@
 package de.davidartmann.charowin;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -59,6 +58,9 @@ public class MainActivityNew extends AppCompatActivity
         if (savedInstanceState == null) {
             replaceFragment(new TopFragment());
         }
+
+//        DaoMaster.OpenHelper openHelper = new DaoMaster.DevOpenHelper(this, "charowin.db", null);
+        //TODO
     }
 
     /**
