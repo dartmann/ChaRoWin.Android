@@ -11,13 +11,13 @@ import de.davidartmann.charowin.db.model.Exercise;
  */
 public interface IExerciseManager {
 
-    List<Exercise> getAll();
+    List<Exercise> getAllExercises();
 
-    Exercise get(Long id);
+    Exercise getExercise(Long id);
 
-    Exercise create(Exercise exercise);
+    Long createExercise(Exercise exercise);
 
-    Exercise updateById(Long id, Exercise exercise);
+    Exercise updateExerciseById(Long id, Exercise exercise);
 
-    Boolean deleteById(Long id);
+    Boolean deleteExerciseById(Long id);
 }

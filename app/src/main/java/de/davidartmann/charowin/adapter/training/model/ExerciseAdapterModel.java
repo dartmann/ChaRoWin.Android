@@ -1,7 +1,5 @@
 package de.davidartmann.charowin.adapter.training.model;
 
-import de.davidartmann.charowin.model.BaseModel;
-
 /**
  * Model class for a exercise.
  * Created by David on 25.09.2015.

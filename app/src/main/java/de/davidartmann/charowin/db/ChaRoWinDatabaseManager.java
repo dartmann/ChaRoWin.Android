@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import de.davidartmann.charowin.db.contract.IDataBaseManager;
+import de.davidartmann.charowin.db.contract.IExerciseManager;
 import de.davidartmann.charowin.db.model.DaoMaster;
 import de.davidartmann.charowin.db.model.DaoSession;
 import de.davidartmann.charowin.db.model.DietPlan;
 import de.davidartmann.charowin.db.model.Exercise;
+import de.davidartmann.charowin.db.model.ExerciseDao;
 import de.davidartmann.charowin.db.model.Exercise_Workout;
 import de.davidartmann.charowin.db.model.Food;
 import de.davidartmann.charowin.db.model.Food_Meal;
@@ -33,7 +35,7 @@ import de.greenrobot.dao.async.AsyncSession;
  *
  * Created by David on 14.10.2015.
  */
-public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBaseManager {
+public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBaseManager, IExerciseManager {
 
     private static final String TAG = ChaRoWinDatabaseManager.class.getSimpleName();
 
@@ -61,24 +63,37 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
     }
 
     public void openReadableDb() {
-        sqLiteDatabase = devOpenHelper.getReadableDatabase();
-        daoMaster = new DaoMaster(sqLiteDatabase);
-        daoSession = daoMaster.newSession();
-        asyncSession = daoSession.startAsyncSession();
-        asyncSession.setListener(this);
+        try {
+            sqLiteDatabase = devOpenHelper.getReadableDatabase();
+        } catch (SQLiteException se) {
+            Log.w(TAG, "SQLiteException in openReadableDb()");
+            se.printStackTrace();
+        }
+        if (sqLiteDatabase != null) {
+            daoMaster = new DaoMaster(sqLiteDatabase);
+            daoSession = daoMaster.newSession();
+            asyncSession = daoSession.startAsyncSession();
+            asyncSession.setListener(this);
+        } else {
+            Log.w(TAG, "sqLiteDatabase was null in openReadableDb()");
+        }
     }
 
     public void openWritableDb() {
         try {
             sqLiteDatabase = devOpenHelper.getWritableDatabase();
         } catch (SQLiteException se) {
-            Log.w(TAG, "SQLiteException in openWritable()");
+            Log.w(TAG, "SQLiteException in openWritableDb()");
             se.printStackTrace();
         }
-        daoMaster = new DaoMaster(sqLiteDatabase);
-        daoSession = daoMaster.newSession();
-        asyncSession = daoSession.startAsyncSession();
-        asyncSession.setListener(this);
+        if (sqLiteDatabase != null) {
+            daoMaster = new DaoMaster(sqLiteDatabase);
+            daoSession = daoMaster.newSession();
+            asyncSession = daoSession.startAsyncSession();
+            asyncSession.setListener(this);
+        } else {
+            Log.w(TAG, "sqLiteDatabase was null in openWritableDb()");
+        }
     }
 
     @Override
@@ -129,5 +144,55 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
     @Override
     public void onAsyncOperationCompleted(AsyncOperation operation) {
         completedOperations.add(operation);
+    }
+
+    @Override
+    public List<Exercise> getAllExercises() {
+        List<Exercise> exercises;
+        openReadableDb();
+        ExerciseDao exerciseDao = daoSession.getExerciseDao();
+        exercises = exerciseDao.loadAll();
+        daoSession.clear();
+        return exercises;
+    }
+
+    /**
+     * Returns an {@link Exercise} by its id.
+     * @param id the id of the Exercise
+     * @return the Exercise or null
+     */
+    @Override
+    public Exercise getExercise(Long id) {
+        Exercise exercise = null;
+        if (id != null) {
+            openReadableDb();
+            ExerciseDao exerciseDao = daoSession.getExerciseDao();
+            exercise = exerciseDao.load(id);
+            daoSession.clear();
+        }
+        return exercise;
+    }
+
+    @Override
+    public Long createExercise(Exercise exercise) {
+        Long rowId = null;
+        if (exercise != null) {
+            openWritableDb();
+            ExerciseDao exerciseDao = daoSession.getExerciseDao();
+            rowId = exerciseDao.insert(exercise);
+        } else {
+            Log.w(TAG, "Could not create Exercise without model");
+        }
+        return rowId;
+    }
+
+    @Override
+    public Exercise updateExerciseById(Long id, Exercise exercise) {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteExerciseById(Long id) {
+        return null;
     }
 }
