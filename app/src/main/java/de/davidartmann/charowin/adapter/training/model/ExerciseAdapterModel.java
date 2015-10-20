@@ -6,7 +6,7 @@ import de.davidartmann.charowin.model.BaseModel;
  * Model class for a exercise.
  * Created by David on 25.09.2015.
  */
-public class Exercise {
+public class ExerciseAdapterModel {
 
     private String imageUrl;
     private String exerciseName;

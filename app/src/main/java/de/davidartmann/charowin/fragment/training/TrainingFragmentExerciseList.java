@@ -21,7 +21,7 @@ import java.util.List;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.training.TrainingFragmentExerciseListAdapter;
-import de.davidartmann.charowin.adapter.training.model.Exercise;
+import de.davidartmann.charowin.adapter.training.model.ExerciseAdapterModel;
 import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
@@ -41,13 +41,13 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //TODO: just for testing, delete afterwards:
-        List<Exercise> exercises = createExercises();
+        List<ExerciseAdapterModel> exerciseAdapterModels = createExercises();
         mView = inflater.inflate(R.layout.fragment_training_exerciselist, container, false);
         RecyclerView mRecyclerView = (RecyclerView) mView.findViewById(R.id.fragment_training_exerciselist_recyclerview);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mView.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.Adapter mAdapter = new TrainingFragmentExerciseListAdapter(exercises);
+        RecyclerView.Adapter mAdapter = new TrainingFragmentExerciseListAdapter(exerciseAdapterModels);
         mRecyclerView.setAdapter(mAdapter);
         FloatingActionButton floatingActionButton =
                 (FloatingActionButton) mView.findViewById(R.id.fragment_training_exerciselist_floatingactionbutton);
@@ -55,18 +55,18 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
         return mView;
     }
 
-    private List<Exercise> createExercises() {
-        List<Exercise> exercises = new ArrayList<>();
+    private List<ExerciseAdapterModel> createExercises() {
+        List<ExerciseAdapterModel> exerciseAdapterModels = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
-            Exercise exercise = new Exercise();
-            exercise.setImageUrl("http://www.shapefit.com/wp-content/uploads/2015/04/chest-exercises-barbell-bench-press-medium-grip.gif");
-            exercise.setExerciseName("Exercise " + i);
-            exercise.setSets("3");
-            exercise.setReps("10,10,10,8");
-            exercise.setRestTime("120");
-            exercises.add(exercise);
+            ExerciseAdapterModel exerciseAdapterModel = new ExerciseAdapterModel();
+            exerciseAdapterModel.setImageUrl("http://www.shapefit.com/wp-content/uploads/2015/04/chest-exerciseAdapterModels-barbell-bench-press-medium-grip.gif");
+            exerciseAdapterModel.setExerciseName("ExerciseAdapterModel " + i);
+            exerciseAdapterModel.setSets("3");
+            exerciseAdapterModel.setReps("10,10,10,8");
+            exerciseAdapterModel.setRestTime("120");
+            exerciseAdapterModels.add(exerciseAdapterModel);
         }
-        return exercises;
+        return exerciseAdapterModels;
     }
 
     private void showExerciseAddDialog() {

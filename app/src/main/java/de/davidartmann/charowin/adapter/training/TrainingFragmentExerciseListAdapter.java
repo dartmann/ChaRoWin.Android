@@ -1,11 +1,6 @@
 package de.davidartmann.charowin.adapter.training;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.training.model.Exercise;
+import de.davidartmann.charowin.adapter.training.model.ExerciseAdapterModel;
 import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
@@ -33,10 +28,10 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
     private static final String TRAINING_FRAGMENT_EXERCISELIST_ADAPTER =
             TrainingFragmentExerciseListAdapter.class.getSimpleName();
 
-    private List<Exercise> exercises;
+    private List<ExerciseAdapterModel> exerciseAdapterModels;
 
-    public TrainingFragmentExerciseListAdapter(List<Exercise> exercises) {
-        this.exercises = exercises;
+    public TrainingFragmentExerciseListAdapter(List<ExerciseAdapterModel> exerciseAdapterModels) {
+        this.exerciseAdapterModels = exerciseAdapterModels;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -93,16 +88,16 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Exercise exercise = exercises.get(position);
+        ExerciseAdapterModel exerciseAdapterModel = exerciseAdapterModels.get(position);
         Picasso.with(holder.context)
-                .load(exercise.getImageUrl())
+                .load(exerciseAdapterModel.getImageUrl())
                 .placeholder(android.R.drawable.ic_menu_add)
                 .error(android.R.drawable.ic_menu_delete)
                 .into(holder.mImageViewExerciseIcon);
-        holder.mTextViewExerciseName.setText(exercise.getExerciseName());
-        holder.mTextViewSets.setText(exercise.getSets());
-        holder.mTextViewReps.setText(exercise.getReps());
-        holder.mTextViewRestTime.setText(exercise.getRestTime());
+        holder.mTextViewExerciseName.setText(exerciseAdapterModel.getExerciseName());
+        holder.mTextViewSets.setText(exerciseAdapterModel.getSets());
+        holder.mTextViewReps.setText(exerciseAdapterModel.getReps());
+        holder.mTextViewRestTime.setText(exerciseAdapterModel.getRestTime());
     }
 
     /**
@@ -142,6 +137,6 @@ public class TrainingFragmentExerciseListAdapter extends RecyclerView.Adapter<Tr
      */
     @Override
     public int getItemCount() {
-        return exercises.size();
+        return exerciseAdapterModels.size();
     }
 }

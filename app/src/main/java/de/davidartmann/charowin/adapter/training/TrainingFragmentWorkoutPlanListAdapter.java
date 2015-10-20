@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.training.model.WorkoutPlan;
+import de.davidartmann.charowin.adapter.training.model.WorkoutPlanAdapterModel;
 import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
@@ -27,10 +27,10 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
     private static final String TRAINING_FRAGMENT_WORKOUT_PLANLIST_ADAPTER =
             TrainingFragmentWorkoutPlanListAdapter.class.getSimpleName();
 
-    private List<WorkoutPlan> workoutPlans;
+    private List<WorkoutPlanAdapterModel> workoutPlanAdapterModels;
 
-    public TrainingFragmentWorkoutPlanListAdapter(List<WorkoutPlan> workoutPlans) {
-        this.workoutPlans = workoutPlans;
+    public TrainingFragmentWorkoutPlanListAdapter(List<WorkoutPlanAdapterModel> workoutPlanAdapterModels) {
+        this.workoutPlanAdapterModels = workoutPlanAdapterModels;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -99,10 +99,10 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        WorkoutPlan workoutPlan = workoutPlans.get(position);
-        holder.mTextViewName.setText(workoutPlan.getName());
-        holder.mTextViewDescription.setText(workoutPlan.getDescription());
-        holder.mTextViewAmountDays.setText(workoutPlan.getAmountDays());
+        WorkoutPlanAdapterModel workoutPlanAdapterModel = workoutPlanAdapterModels.get(position);
+        holder.mTextViewName.setText(workoutPlanAdapterModel.getName());
+        holder.mTextViewDescription.setText(workoutPlanAdapterModel.getDescription());
+        holder.mTextViewAmountDays.setText(workoutPlanAdapterModel.getAmountDays());
         //TODO: check which plan is pinned as current or if none
     }
 
@@ -141,6 +141,6 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
      */
     @Override
     public int getItemCount() {
-        return workoutPlans.size();
+        return workoutPlanAdapterModels.size();
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.training.TrainingFragmentWorkoutPlanListAdapter;
-import de.davidartmann.charowin.adapter.training.model.WorkoutPlan;
+import de.davidartmann.charowin.adapter.training.model.WorkoutPlanAdapterModel;
 
 /**
  * Fragment for the workout plan list.
@@ -34,18 +34,18 @@ public class TrainingFragmentWorkoutPlanList extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        List<WorkoutPlan> workoutPlans = createWorkouts();
-        RecyclerView.Adapter mAdapter = new TrainingFragmentWorkoutPlanListAdapter(workoutPlans);
+        List<WorkoutPlanAdapterModel> workoutPlanAdapterModels = createWorkouts();
+        RecyclerView.Adapter mAdapter = new TrainingFragmentWorkoutPlanListAdapter(workoutPlanAdapterModels);
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
-    private List<WorkoutPlan> createWorkouts() {
-        List<WorkoutPlan> workoutPlans = new ArrayList<>();
+    private List<WorkoutPlanAdapterModel> createWorkouts() {
+        List<WorkoutPlanAdapterModel> workoutPlanAdapterModels = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            WorkoutPlan workoutPlan = new WorkoutPlan("Name "+i, "Description "+i, String.valueOf(i));
-            workoutPlans.add(workoutPlan);
+            WorkoutPlanAdapterModel workoutPlanAdapterModel = new WorkoutPlanAdapterModel("Name "+i, "Description "+i, String.valueOf(i));
+            workoutPlanAdapterModels.add(workoutPlanAdapterModel);
         }
-        return workoutPlans;
+        return workoutPlanAdapterModels;
     }
 }

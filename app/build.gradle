@@ -37,7 +37,7 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.5'
     compile 'de.greenrobot:greendao:2.0.0'
     /*customizable dialogs API
-    compile('com.afollestad.material-dialogs:core:0.8.3.0@aar') {
+    compile('com.afollestad.material-dialogs:core:0.8.4.2@aar') {
         transitive = true
     }*/
 }
