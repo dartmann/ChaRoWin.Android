@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import de.davidartmann.charowin.db.model.DaoMaster;
-
 /**
  * Database Helper which extends {@link de.davidartmann.charowin.db.model.DaoMaster.OpenHelper}.
  *

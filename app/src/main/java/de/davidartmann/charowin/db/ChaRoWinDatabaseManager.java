@@ -61,10 +61,12 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener {
      * Note, that the operation may not have been successful, check
      * {@link AsyncOperation#isFailed()} and/or {@link AsyncOperation#getThrowable()} for error situations.
      *
-     * @param operation
+     * @param operation the async operation
      */
     @Override
     public void onAsyncOperationCompleted(AsyncOperation operation) {
         completedOperations.add(operation);
     }
+
+
 }
