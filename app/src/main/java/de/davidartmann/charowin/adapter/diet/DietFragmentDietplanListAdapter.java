@@ -11,19 +11,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.diet.model.Dietplan;
+import de.davidartmann.charowin.adapter.diet.model.DietplanAdapterModel;
 
 /**
- * Adapter class for the list of dietplans of a trainingsplan.
+ * Adapter class for the list of dietplanAdapterModels of a trainingsplan.
  *
  * Created by David on 26.09.2015.
  */
 public class DietFragmentDietplanListAdapter extends RecyclerView.Adapter<DietFragmentDietplanListAdapter.ViewHolder> {
 
-    private List<Dietplan> dietplans;
+    private List<DietplanAdapterModel> dietplanAdapterModels;
 
-    public DietFragmentDietplanListAdapter(List<Dietplan> dietplans) {
-        this.dietplans = dietplans;
+    public DietFragmentDietplanListAdapter(List<DietplanAdapterModel> dietplanAdapterModels) {
+        this.dietplanAdapterModels = dietplanAdapterModels;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,12 +66,12 @@ public class DietFragmentDietplanListAdapter extends RecyclerView.Adapter<DietFr
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Dietplan dietplan = dietplans.get(position);
-        holder.mTextViewDietplanName.setText(dietplan.getDietplanName());
-        holder.mTextViewDescription.setText(dietplan.getDescription());
-        holder.mTextViewAmountDays.setText(dietplan.getAmountDays());
-        holder.mTextViewAmountMeals.setText(dietplan.getAmountMeals());
-        holder.mTextViewEnergyKcal.setText(dietplan.getEnergyKcal());
+        DietplanAdapterModel dietplanAdapterModel = dietplanAdapterModels.get(position);
+        holder.mTextViewDietplanName.setText(dietplanAdapterModel.getDietplanName());
+        holder.mTextViewDescription.setText(dietplanAdapterModel.getDescription());
+        holder.mTextViewAmountDays.setText(dietplanAdapterModel.getAmountDays());
+        holder.mTextViewAmountMeals.setText(dietplanAdapterModel.getAmountMeals());
+        holder.mTextViewEnergyKcal.setText(dietplanAdapterModel.getEnergyKcal());
     }
 
     /**
@@ -109,6 +109,6 @@ public class DietFragmentDietplanListAdapter extends RecyclerView.Adapter<DietFr
      */
     @Override
     public int getItemCount() {
-        return dietplans.size();
+        return dietplanAdapterModels.size();
     }
 }

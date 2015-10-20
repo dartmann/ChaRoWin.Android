@@ -1,13 +1,10 @@
 package de.davidartmann.charowin.fragment.diet;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +14,7 @@ import java.util.List;
 
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.diet.DietFragmentDietplanListAdapter;
-import de.davidartmann.charowin.adapter.diet.DietFragmentMealListAdapter;
-import de.davidartmann.charowin.adapter.diet.model.Dietplan;
-import de.davidartmann.charowin.adapter.diet.model.Meal;
+import de.davidartmann.charowin.adapter.diet.model.DietplanAdapterModel;
 
 /**
  * Adapter class for the dietplan list.
@@ -40,18 +35,18 @@ public class DietFragmentDietplanList extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         //TODO: just for testing, delete afterwards:
-        List<Dietplan> dietplans = createDietPlans();
-        RecyclerView.Adapter mAdapter = new DietFragmentDietplanListAdapter(dietplans);
+        List<DietplanAdapterModel> dietplanAdapterModels = createDietPlans();
+        RecyclerView.Adapter mAdapter = new DietFragmentDietplanListAdapter(dietplanAdapterModels);
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
-    private List<Dietplan> createDietPlans() {
-        List<Dietplan> dietplans = new ArrayList<>();
+    private List<DietplanAdapterModel> createDietPlans() {
+        List<DietplanAdapterModel> dietplanAdapterModels = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
-            Dietplan dietplan = new Dietplan("Sommerfigur", "Plan für die Sommerfigur", "2", "5", "2500");
-            dietplans.add(dietplan);
+            DietplanAdapterModel dietplanAdapterModel = new DietplanAdapterModel("Sommerfigur", "Plan für die Sommerfigur", "2", "5", "2500");
+            dietplanAdapterModels.add(dietplanAdapterModel);
         }
-        return dietplans;
+        return dietplanAdapterModels;
     }
 }

@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import de.davidartmann.charowin.R;
-import de.davidartmann.charowin.adapter.diet.model.Meal;
+import de.davidartmann.charowin.adapter.diet.model.MealAdapterModel;
 import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
@@ -28,10 +28,10 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
     private static final String DIET_FRAGMENT_MEALLIST_ADAPTER =
             DietFragmentDietplanListAdapter.class.getSimpleName();
 
-    private List<Meal> meals;
+    private List<MealAdapterModel> mealAdapterModels;
 
-    public DietFragmentMealListAdapter(List<Meal> meals) {
-        this.meals = meals;
+    public DietFragmentMealListAdapter(List<MealAdapterModel> mealAdapterModels) {
+        this.mealAdapterModels = mealAdapterModels;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -88,15 +88,15 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Meal meal = meals.get(position);
+        MealAdapterModel mealAdapterModel = mealAdapterModels.get(position);
         Picasso.with(holder.mContext)
-                .load(meal.getImageUrl())
+                .load(mealAdapterModel.getImageUrl())
                 .placeholder(android.R.drawable.ic_menu_add)
                 .error(android.R.drawable.ic_menu_delete)
                 .into(holder.mImageViewMealIcon);
-        holder.mTextViewMealName.setText(meal.getMealName());
-        holder.mTextViewMealTime.setText(meal.getMealTime());
-        holder.mTextViewEnergyKcal.setText(meal.getEnergyKcal());
+        holder.mTextViewMealName.setText(mealAdapterModel.getMealName());
+        holder.mTextViewMealTime.setText(mealAdapterModel.getMealTime());
+        holder.mTextViewEnergyKcal.setText(mealAdapterModel.getEnergyKcal());
     }
 
     /**
@@ -134,6 +134,6 @@ public class DietFragmentMealListAdapter extends RecyclerView.Adapter<DietFragme
      */
     @Override
     public int getItemCount() {
-        return meals.size();
+        return mealAdapterModels.size();
     }
 }

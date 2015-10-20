@@ -5,14 +5,14 @@ package de.davidartmann.charowin.adapter.diet.model;
  *
  * Created by David on 07.10.2015.
  */
-public class Meal {
+public class MealAdapterModel {
 
     private String imageUrl;
     private String mealName;
     private String mealTime;
     private String energyKcal;
 
-    public Meal(String imageUrl, String mealName, String mealTime, String energyKcal) {
+    public MealAdapterModel(String imageUrl, String mealName, String mealTime, String energyKcal) {
         this.imageUrl = imageUrl;
         this.mealName = mealName;
         this.mealTime = mealTime;

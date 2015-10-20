@@ -5,7 +5,7 @@ package de.davidartmann.charowin.adapter.diet.model;
  *
  * Created by David on 07.10.2015.
  */
-public class Dietplan {
+public class DietplanAdapterModel {
 
     private String dietplanName;
     private String description;
@@ -13,7 +13,7 @@ public class Dietplan {
     private String amountMeals;
     private String energyKcal;
 
-    public Dietplan(String mealName, String description, String amountDays, String amountMeals, String energyKcal) {
+    public DietplanAdapterModel(String mealName, String description, String amountDays, String amountMeals, String energyKcal) {
         this.dietplanName = mealName;
         this.description = description;
         this.amountDays = amountDays;

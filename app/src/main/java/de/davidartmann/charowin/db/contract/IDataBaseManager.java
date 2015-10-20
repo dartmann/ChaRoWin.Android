@@ -6,7 +6,7 @@ package de.davidartmann.charowin.db.contract;
  *
  * Created by David on 14.10.2015.
  */
-public interface IOpenHelper {
+public interface IDataBaseManager {
 
     //TODO: think about adding a db manager class per model
 

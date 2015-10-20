@@ -5,6 +5,8 @@ import java.util.List;
 import de.davidartmann.charowin.db.model.Exercise;
 
 /**
+ * Interface for the Exercise DbManager.
+ *
  * Created by David on 20.10.2015.
  */
 public interface IExerciseManager {
@@ -14,4 +16,8 @@ public interface IExerciseManager {
     Exercise get(Long id);
 
     Exercise create(Exercise exercise);
+
+    Exercise updateById(Long id, Exercise exercise);
+
+    Boolean deleteById(Long id);
 }
