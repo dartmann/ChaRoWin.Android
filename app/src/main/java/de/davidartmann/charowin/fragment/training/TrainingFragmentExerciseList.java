@@ -22,6 +22,8 @@ import java.util.List;
 import de.davidartmann.charowin.R;
 import de.davidartmann.charowin.adapter.training.TrainingFragmentExerciseListAdapter;
 import de.davidartmann.charowin.adapter.training.model.ExerciseAdapterModel;
+import de.davidartmann.charowin.db.ChaRoWinDatabaseManager;
+import de.davidartmann.charowin.db.model.Exercise;
 import de.davidartmann.charowin.util.CustomSnackBar;
 
 /**
@@ -84,6 +86,9 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
                     R.layout.fragment_training_exerciselist_dialog, null))
                 .setPositiveButton("Speichern", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        ChaRoWinDatabaseManager chaRoWinDatabaseManager = new ChaRoWinDatabaseManager(getContext());
+                        //TODO: create exercise and then add it to db
+                        //chaRoWinDatabaseManager.createExercise();
                         CustomSnackBar.create(mView, "Übung wurde gespeichert", null, null);
                         //TODO: save exercise
                     }

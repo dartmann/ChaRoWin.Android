@@ -8,15 +8,11 @@ package de.davidartmann.charowin.db.contract;
  */
 public interface IDataBaseManager {
 
-    //TODO: think about adding a db manager class per model
+    void openReadableDb();
 
-    public void openReadableDb();
+    void openWritableDb();
 
-    public void openWritableDb();
+    void closeDbConnections();
 
-    public void closeDbConnections();
-
-    public void dropDatabase();
-
-
+    void dropDatabase();
 }

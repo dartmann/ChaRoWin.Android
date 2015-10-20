@@ -115,7 +115,7 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
     }
 
     @Override
-    public void dropDatabase() {
+    public synchronized void dropDatabase() {
         openWritableDb();
         DaoMaster.dropAllTables(sqLiteDatabase, true);
         devOpenHelper.onCreate(sqLiteDatabase);
@@ -147,7 +147,7 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
     }
 
     @Override
-    public List<Exercise> getAllExercises() {
+    public synchronized List<Exercise> getAllExercises() {
         List<Exercise> exercises;
         openReadableDb();
         ExerciseDao exerciseDao = daoSession.getExerciseDao();
@@ -162,7 +162,7 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
      * @return the Exercise or null
      */
     @Override
-    public Exercise getExercise(Long id) {
+    public synchronized Exercise getExercise(Long id) {
         Exercise exercise = null;
         if (id != null) {
             openReadableDb();
@@ -173,26 +173,67 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
         return exercise;
     }
 
+    /**
+     * Creates an {@link Exercise} by a given model.
+     * @param exercise the given model
+     * @return the id of the created Exercise or null
+     */
     @Override
-    public Long createExercise(Exercise exercise) {
+    public synchronized Long createExercise(Exercise exercise) {
         Long rowId = null;
         if (exercise != null) {
             openWritableDb();
             ExerciseDao exerciseDao = daoSession.getExerciseDao();
             rowId = exerciseDao.insert(exercise);
+            daoSession.clear();
         } else {
             Log.w(TAG, "Could not create Exercise without model");
         }
         return rowId;
     }
 
+    /**
+     * Updates an {@link Exercise} by its id and a given model.
+     * @param id the id of the Exercise
+     * @param exercise the model with update information
+     * @return true if updated or false if not
+     */
     @Override
-    public Exercise updateExerciseById(Long id, Exercise exercise) {
-        return null;
+    public synchronized Boolean updateExerciseById(Long id, Exercise exercise) {
+        if (id != null && exercise != null) {
+            if (getExercise(id) != null) {
+                openWritableDb();
+                ExerciseDao exerciseDao = daoSession.getExerciseDao();
+                exerciseDao.update(exercise);
+                daoSession.clear();
+                Log.i(TAG, "Updated Exercise with id "+id);
+                return true;
+            } else {
+                Log.w(TAG, "Could not update Exercise with invalid id "+id);
+            }
+        } else {
+            Log.w(TAG, "Could not update Exercise without parameters");
+        }
+        return false;
     }
 
+    /**
+     * Deletes an {@link Exercise} by its id.
+     * @param id the id of the Exercise
+     * @return true if deleted or false if not
+     */
     @Override
-    public Boolean deleteExerciseById(Long id) {
-        return null;
+    public synchronized Boolean deleteExerciseById(Long id) {
+        if (id != null) {
+            openWritableDb();
+            ExerciseDao exerciseDao = daoSession.getExerciseDao();
+            exerciseDao.deleteByKey(id);
+            daoSession.clear();
+            Log.i(TAG, "Deleted Exercise with id "+id);
+            return true;
+        } else {
+            Log.w(TAG, "Could not delete Exercise without id");
+        }
+        return false;
     }
 }

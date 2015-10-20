@@ -7,7 +7,7 @@
     >
     <EditText
         android:id="@+id/fragment_training_exerciselist_dialog_edittext_name"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -18,11 +18,11 @@
         android:maxLines="1"
         android:textColorHighlight="@color/green"
         android:textColorHint="@color/grey_light"
-        android:hint="username"
+        android:hint="Übungsname"
         />
     <EditText
         android:id="@+id/fragment_training_exerciselist_dialog_edittext_description"
-        android:inputType="textAutoComplete"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

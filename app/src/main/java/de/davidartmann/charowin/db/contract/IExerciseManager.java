@@ -17,7 +17,7 @@ public interface IExerciseManager {
 
     Long createExercise(Exercise exercise);
 
-    Exercise updateExerciseById(Long id, Exercise exercise);
+    Boolean updateExerciseById(Long id, Exercise exercise);
 
     Boolean deleteExerciseById(Long id);
 }
