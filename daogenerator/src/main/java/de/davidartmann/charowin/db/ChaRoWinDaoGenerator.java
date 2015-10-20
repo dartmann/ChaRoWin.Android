@@ -128,31 +128,31 @@ public class ChaRoWinDaoGenerator {
     }
 
     private static Entity addFoodMealEntity(Schema schema) {
-        Entity entityFoodMeal = schema.addEntity("food_meal");
+        Entity entityFoodMeal = schema.addEntity("Food_Meal");
         entityFoodMeal.addIdProperty().primaryKey().autoincrement();
         return entityFoodMeal;
     }
 
     private static Entity addMealDietPlanEntity(Schema schema) {
-        Entity entityMealDietPlan = schema.addEntity("meal_dietplan");
+        Entity entityMealDietPlan = schema.addEntity("Meal_Dietplan");
         entityMealDietPlan.addIdProperty().primaryKey().autoincrement();
         return entityMealDietPlan;
     }
 
     private static Entity addExerciseWorkoutEntity(Schema schema) {
-        Entity entityExerciseWorkout = schema.addEntity("exercise_workout");
+        Entity entityExerciseWorkout = schema.addEntity("Exercise_Workout");
         entityExerciseWorkout.addIdProperty().primaryKey().autoincrement();
         return entityExerciseWorkout;
     }
 
     private static Entity addMuscleExerciseEntity(Schema schema) {
-        Entity entityMuscleExercise = schema.addEntity("muscle_exercise");
+        Entity entityMuscleExercise = schema.addEntity("Muscle_Exercise");
         entityMuscleExercise.addIdProperty().primaryKey().autoincrement();
         return entityMuscleExercise;
     }
 
     private static Entity addFoodEntity(Schema schema) {
-        Entity entityFood = schema.addEntity("food");
+        Entity entityFood = schema.addEntity("Food");
         entityFood.addIdProperty().primaryKey().autoincrement();
         entityFood.addStringProperty("name");
         entityFood.addFloatProperty("weight");
@@ -160,7 +160,7 @@ public class ChaRoWinDaoGenerator {
     }
 
     private static Entity addMealEntity(Schema schema) {
-        Entity entityMeal = schema.addEntity("meal");
+        Entity entityMeal = schema.addEntity("Meal");
         entityMeal.addIdProperty().primaryKey().autoincrement();
         entityMeal.addStringProperty("name");
         entityMeal.addLongProperty("eating_time");
@@ -169,14 +169,14 @@ public class ChaRoWinDaoGenerator {
     }
 
     private static Entity addMuscleEntity(Schema schema) {
-        Entity entityMuscle = schema.addEntity("muscle");
+        Entity entityMuscle = schema.addEntity("Muscle");
         entityMuscle.addIdProperty().primaryKey().autoincrement();
         entityMuscle.addStringProperty("name");
         return entityMuscle;
     }
 
     private static Entity addExerciseEntity(Schema schema) {
-        Entity entityExercise = schema.addEntity("exercise");
+        Entity entityExercise = schema.addEntity("Exercise");
         entityExercise.addIdProperty().primaryKey().autoincrement();
         entityExercise.addStringProperty("name");
         return entityExercise;
@@ -184,7 +184,7 @@ public class ChaRoWinDaoGenerator {
 
 
     private static Entity addWorkoutEntity(Schema schema) {
-        Entity entityWorkout = schema.addEntity("workout");
+        Entity entityWorkout = schema.addEntity("Workout");
         entityWorkout.addIdProperty().autoincrement().primaryKey();
         entityWorkout.addStringProperty("name");
         entityWorkout.addStringProperty("weekday");
@@ -194,7 +194,7 @@ public class ChaRoWinDaoGenerator {
 
 
     private static Entity addWorkoutSessionEntity(Schema schema) {
-        Entity entityWorkoutSession = schema.addEntity("workoutSession");
+        Entity entityWorkoutSession = schema.addEntity("WorkoutSession");
         entityWorkoutSession.addIdProperty().primaryKey().autoincrement();
         entityWorkoutSession.addLongProperty("begin_of_workout");
         entityWorkoutSession.addLongProperty("end_of_workout");
@@ -203,7 +203,7 @@ public class ChaRoWinDaoGenerator {
 
 
     private static Entity addWorkoutPlanEntity(Schema schema) {
-        Entity entityWorkoutPlan = schema.addEntity("workoutPlan");
+        Entity entityWorkoutPlan = schema.addEntity("WorkoutPlan");
         entityWorkoutPlan.addIdProperty().autoincrement().primaryKey();
         entityWorkoutPlan.addStringProperty("name");
         entityWorkoutPlan.addBooleanProperty("current");
@@ -213,7 +213,7 @@ public class ChaRoWinDaoGenerator {
     }
 
     private static Entity addUserEntity(Schema schema) {
-        Entity entityUser = schema.addEntity("user");
+        Entity entityUser = schema.addEntity("User");
         entityUser.addIdProperty().primaryKey().autoincrement();
         entityUser.addStringProperty("name");
         entityUser.addFloatProperty("body_weight");
@@ -225,7 +225,7 @@ public class ChaRoWinDaoGenerator {
 
 
     private static Entity addDietPlanEntity(Schema schema) {
-        Entity entityDietPlan = schema.addEntity("dietPlan");
+        Entity entityDietPlan = schema.addEntity("DietPlan");
         entityDietPlan.addIdProperty().primaryKey().autoincrement();
         entityDietPlan.addStringProperty("name");
         return entityDietPlan;
