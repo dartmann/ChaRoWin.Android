@@ -23,7 +23,7 @@ import de.davidartmann.charowin.adapter.training.model.WorkoutPlanAdapterModel;
  */
 public class TrainingFragmentWorkoutPlanList extends Fragment {
 
-//    private static final String TRAINING_FRAGMENT_WORKOUT_PLANLIST =
+//    private static final String TAG =
 //            TrainingFragmentWorkoutPlanList.class.getSimpleName();
 
     @Nullable
@@ -32,18 +32,20 @@ public class TrainingFragmentWorkoutPlanList extends Fragment {
         View view = inflater.inflate(R.layout.fragment_training_workoutplanlist, container, false);
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_training_workoutplanlist_recyclerview);
         mRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         List<WorkoutPlanAdapterModel> workoutPlanAdapterModels = createWorkouts();
-        RecyclerView.Adapter mAdapter = new TrainingFragmentWorkoutPlanListAdapter(workoutPlanAdapterModels);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(
+                new TrainingFragmentWorkoutPlanListAdapter(workoutPlanAdapterModels,
+                        R.layout.fragment_training_workoutplanlist_cardlayout));
         return view;
     }
 
+    //TODO: replace this with getting data from db
     private List<WorkoutPlanAdapterModel> createWorkouts() {
         List<WorkoutPlanAdapterModel> workoutPlanAdapterModels = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            WorkoutPlanAdapterModel workoutPlanAdapterModel = new WorkoutPlanAdapterModel("Name "+i, "Description "+i, String.valueOf(i));
+            WorkoutPlanAdapterModel workoutPlanAdapterModel =
+                    new WorkoutPlanAdapterModel("Name "+i, "Description "+i, String.valueOf(i), false);
             workoutPlanAdapterModels.add(workoutPlanAdapterModel);
         }
         return workoutPlanAdapterModels;

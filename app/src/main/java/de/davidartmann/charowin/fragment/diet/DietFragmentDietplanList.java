@@ -34,17 +34,20 @@ public class DietFragmentDietplanList extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //TODO: just for testing, delete afterwards:
         List<DietplanAdapterModel> dietplanAdapterModels = createDietPlans();
-        RecyclerView.Adapter mAdapter = new DietFragmentDietplanListAdapter(dietplanAdapterModels);
+        RecyclerView.Adapter mAdapter =
+                new DietFragmentDietplanListAdapter(dietplanAdapterModels,
+                        R.layout.fragment_diet_dietplanlist_cardlayout);
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
+    //TODO: replace this with data from the database
     private List<DietplanAdapterModel> createDietPlans() {
         List<DietplanAdapterModel> dietplanAdapterModels = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
-            DietplanAdapterModel dietplanAdapterModel = new DietplanAdapterModel("Sommerfigur", "Plan für die Sommerfigur", "2", "5", "2500");
+            DietplanAdapterModel dietplanAdapterModel =
+                    new DietplanAdapterModel("Sommerfigur", "Plan für die Sommerfigur", "2", "5", "2500", false);
             dietplanAdapterModels.add(dietplanAdapterModel);
         }
         return dietplanAdapterModels;

@@ -12,13 +12,15 @@ public class DietplanAdapterModel {
     private String amountDays;
     private String amountMeals;
     private String energyKcal;
+    private Boolean currentFavorite;
 
-    public DietplanAdapterModel(String mealName, String description, String amountDays, String amountMeals, String energyKcal) {
+    public DietplanAdapterModel(String mealName, String description, String amountDays, String amountMeals, String energyKcal, Boolean currentFavorite) {
         this.dietplanName = mealName;
         this.description = description;
         this.amountDays = amountDays;
         this.amountMeals = amountMeals;
         this.energyKcal = energyKcal;
+        this.currentFavorite = currentFavorite;
     }
 
     public String getDietplanName() {
@@ -59,5 +61,13 @@ public class DietplanAdapterModel {
 
     public void setAmountMeals(String amountMeals) {
         this.amountMeals = amountMeals;
+    }
+
+    public Boolean isCurrentFavorite() {
+        return currentFavorite;
+    }
+
+    public void setCurrentFavorite(Boolean currentFavorite) {
+        this.currentFavorite = currentFavorite;
     }
 }

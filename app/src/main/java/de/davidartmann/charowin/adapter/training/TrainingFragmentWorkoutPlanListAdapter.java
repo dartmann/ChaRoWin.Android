@@ -22,24 +22,24 @@ import de.davidartmann.charowin.util.CustomSnackBar;
  *
  * Created by David on 08.10.2015.
  */
-public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter<TrainingFragmentWorkoutPlanListAdapter.ViewHolder> {
+public class TrainingFragmentWorkoutPlanListAdapter
+        extends RecyclerView.Adapter<TrainingFragmentWorkoutPlanListAdapter.ViewHolder> {
 
-    private static final String TRAINING_FRAGMENT_WORKOUT_PLANLIST_ADAPTER =
+    private static final String TAG =
             TrainingFragmentWorkoutPlanListAdapter.class.getSimpleName();
 
-    private List<WorkoutPlanAdapterModel> workoutPlanAdapterModels;
+    private List<WorkoutPlanAdapterModel> mWorkoutPlanAdapterModels;
+    private int mResourceId;
 
-    public TrainingFragmentWorkoutPlanListAdapter(List<WorkoutPlanAdapterModel> workoutPlanAdapterModels) {
-        this.workoutPlanAdapterModels = workoutPlanAdapterModels;
+    public TrainingFragmentWorkoutPlanListAdapter(List<WorkoutPlanAdapterModel> workoutPlanAdapterModels, int resourceId) {
+        this.mWorkoutPlanAdapterModels = workoutPlanAdapterModels;
+        this.mResourceId = resourceId;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView mTextViewName;
-        private TextView mTextViewDescription;
-        private TextView mTextViewAmountDays;
-        private Context context;
-        private ImageView mImageViewSettings;
-        private ImageView mImageViewPinAsCurrent;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView mTextViewName, mTextViewDescription, mTextViewAmountDays;
+        private Context mContext;
+        private ImageView mImageViewSettings, mImageViewPinAsCurrent;
         private LinearLayout mLinearLayoutCard;
 
         public ViewHolder(View view) {
@@ -47,7 +47,7 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
             mTextViewName = (TextView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_textview_workoutplanname);
             mTextViewDescription = (TextView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_textview_workoutdescription);
             mTextViewAmountDays = (TextView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_textview_amountdays);
-            context = view.getContext();
+            mContext = view.getContext();
             mImageViewSettings =
                     (ImageView) view.findViewById(R.id.fragment_training_workoutplanlist_cardview_imageview_settings);
             mImageViewSettings.setOnClickListener(this);
@@ -66,16 +66,36 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
                     CustomSnackBar.create(v, "Einstellungen zeigen", null, null);
                     break;
                 case R.id.fragment_training_workoutplanlist_cardview_imageview_pinascurrent:
-                    //TODO: check if another plan is pinned as current, then reset its image first
-                    mImageViewPinAsCurrent.setImageResource(R.drawable.ic_favorite_black_48dp);
+                    checkOtherWorkoutPlansForFavoriteTagAndResetIfTagged(getAdapterPosition());
                     break;
                 case R.id.fragment_training_workoutplanlist_cardview_linearlayout_card:
                     CustomSnackBar.create(v, "Einzelnes Workout in DialogView zeigen?", null, null);
                     break;
                 default:
-                    Log.w(TRAINING_FRAGMENT_WORKOUT_PLANLIST_ADAPTER, "Default path in onCreate()");
+                    Log.w(TAG, "Default path in onClick()");
             }
         }
+
+        public void assignData(WorkoutPlanAdapterModel workoutPlanAdapterModel) {
+            this.mTextViewName.setText(workoutPlanAdapterModel.getName());
+            this.mTextViewDescription.setText(workoutPlanAdapterModel.getDescription());
+            this.mTextViewAmountDays.setText(workoutPlanAdapterModel.getAmountDays());
+            if (workoutPlanAdapterModel.isCurrentFavorite()) {
+                mImageViewPinAsCurrent.setImageResource(R.drawable.ic_favorite_black_48dp);
+            } else {
+                mImageViewPinAsCurrent.setImageResource(R.drawable.ic_favorite_border_black_48dp);
+            }
+        }
+    }
+
+    private void checkOtherWorkoutPlansForFavoriteTagAndResetIfTagged(int adapterPosition) {
+        for (WorkoutPlanAdapterModel model : mWorkoutPlanAdapterModels) {
+            if (model.isCurrentFavorite()) {
+                model.setCurrentFavorite(false);
+            }
+        }
+        mWorkoutPlanAdapterModels.get(adapterPosition).setCurrentFavorite(true);
+        notifyDataSetChanged();
     }
 
     /**
@@ -99,11 +119,7 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        WorkoutPlanAdapterModel workoutPlanAdapterModel = workoutPlanAdapterModels.get(position);
-        holder.mTextViewName.setText(workoutPlanAdapterModel.getName());
-        holder.mTextViewDescription.setText(workoutPlanAdapterModel.getDescription());
-        holder.mTextViewAmountDays.setText(workoutPlanAdapterModel.getAmountDays());
-        //TODO: check which plan is pinned as current or if none
+        holder.assignData(mWorkoutPlanAdapterModels.get(position));
     }
 
     /**
@@ -130,7 +146,7 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_training_workoutplanlist_cardlayout, parent, false);
+                .inflate(mResourceId, parent, false);
         return new ViewHolder(view);
     }
 
@@ -140,7 +156,13 @@ public class TrainingFragmentWorkoutPlanListAdapter extends RecyclerView.Adapter
      * @return The total number of items in this adapter.
      */
     @Override
-    public int getItemCount() {
-        return workoutPlanAdapterModels.size();
+    public int getItemCount() { return mWorkoutPlanAdapterModels.size(); }
+
+    /**
+     * Local contract for the activity
+
+    public interface OnItemClick {
+        void onItemClick(View view, int workoutPlanId);
     }
+     */
 }

@@ -10,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import de.davidartmann.charowin.db.contract.IDataBaseManager;
 import de.davidartmann.charowin.db.contract.IExerciseManager;
+import de.davidartmann.charowin.db.contract.IMuscleManager;
 import de.davidartmann.charowin.db.model.DaoMaster;
 import de.davidartmann.charowin.db.model.DaoSession;
 import de.davidartmann.charowin.db.model.DietPlan;
@@ -21,6 +22,7 @@ import de.davidartmann.charowin.db.model.Food_Meal;
 import de.davidartmann.charowin.db.model.Meal;
 import de.davidartmann.charowin.db.model.Meal_Dietplan;
 import de.davidartmann.charowin.db.model.Muscle;
+import de.davidartmann.charowin.db.model.MuscleDao;
 import de.davidartmann.charowin.db.model.Muscle_Exercise;
 import de.davidartmann.charowin.db.model.User;
 import de.davidartmann.charowin.db.model.Workout;
@@ -35,7 +37,11 @@ import de.greenrobot.dao.async.AsyncSession;
  *
  * Created by David on 14.10.2015.
  */
-public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBaseManager, IExerciseManager {
+public class ChaRoWinDatabaseManager
+        implements AsyncOperationListener,
+        IDataBaseManager,
+        IExerciseManager,
+        IMuscleManager {
 
     private static final String TAG = ChaRoWinDatabaseManager.class.getSimpleName();
 
@@ -146,6 +152,11 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
         completedOperations.add(operation);
     }
 
+    /**
+     * Returns all {@link Exercise}.
+     * TODO: check if empty list or null gets returned, when not entites in db
+     * @return List of Exercise or empty list?
+     */
     @Override
     public synchronized List<Exercise> getAllExercises() {
         List<Exercise> exercises;
@@ -158,7 +169,7 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
 
     /**
      * Returns an {@link Exercise} by its id.
-     * @param id the id of the Exercise
+     * @param id the id (usually PK) of the Exercise
      * @return the Exercise or null
      */
     @Override
@@ -233,6 +244,99 @@ public class ChaRoWinDatabaseManager implements AsyncOperationListener, IDataBas
             return true;
         } else {
             Log.w(TAG, "Could not delete Exercise without id");
+        }
+        return false;
+    }
+
+    /**
+     * Returns all {@link Muscle}
+     * @return List of Muscle or empty list?
+     */
+    @Override
+    public List<Muscle> getAllMuscles() {
+        List<Muscle> muscles;
+        openReadableDb();
+        MuscleDao muscleDao = daoSession.getMuscleDao();
+        muscles = muscleDao.loadAll();
+        daoSession.clear();
+        return muscles;
+    }
+
+    /**
+     * Returns a {@link Muscle} by its id.
+     * @param id the id (usually PK) of the Muscle
+     * @return Muscle or null
+     */
+    @Override
+    public Muscle getMuscle(Long id) {
+        Muscle muscle = null;
+        if (id != null) {
+            openReadableDb();
+            MuscleDao muscleDao = daoSession.getMuscleDao();
+            muscle = muscleDao.load(id);
+            daoSession.clear();
+        }
+        return muscle;
+    }
+
+    /**
+     * Creates a {@link Muscle} by a given model.
+     * @param muscle the given model
+     * @return the row id of the created Muscle
+     */
+    @Override
+    public Long createMuscle(Muscle muscle) {
+        Long rowId = null;
+        if (muscle != null) {
+            MuscleDao muscleDao = daoSession.getMuscleDao();
+            rowId = muscleDao.insert(muscle);
+            daoSession.clear();
+            Log.i(TAG, "Created Muscle with id "+rowId);
+        } else {
+            Log.w(TAG, "Could not create Muscle without id");
+        }
+        return rowId;
+    }
+
+    /**
+     * Updates a {@link Muscle} by its id and a given model.
+     * @param id the id of the Muscle (Primary Key)
+     * @param muscle the given model
+     * @return true if Muscle could be updated or false otherwise
+     */
+    @Override
+    public Boolean updateMuscleById(Long id, Muscle muscle) {
+        if (id != null && muscle != null) {
+            if (getMuscle(id) != null) {
+                MuscleDao muscleDao = daoSession.getMuscleDao();
+                muscleDao.update(muscle);
+                daoSession.clear();
+                Log.i(TAG, "Updated Muscle with id "+id);
+                return true;
+            } else {
+                Log.w(TAG, "Could not update Muscle with invalid id "+id);
+            }
+        } else {
+            Log.w(TAG, "Could not update Muscle without parameters");
+        }
+        return false;
+    }
+
+    /**
+     * Deletes a {@link Muscle} by its id.
+     * @param id the given id (Primary Key)
+     * @return true if Muscle could be deleted or false otherwise
+     */
+    @Override
+    public Boolean deleteMuscleById(Long id) {
+        if (id != null) {
+            MuscleDao muscleDao = daoSession.getMuscleDao();
+            muscleDao.deleteByKey(id);
+            daoSession.clear();
+            Log.i(TAG, "Deleted Muscle with id "+id);
+            return true;
+        } else {
+            Log.w(TAG, "Could not delete Muscle without id");
         }
         return false;
     }

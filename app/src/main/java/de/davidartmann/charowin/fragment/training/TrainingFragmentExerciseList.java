@@ -57,6 +57,7 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
         return mView;
     }
 
+    //TODO: replace this with data from the database
     private List<ExerciseAdapterModel> createExercises() {
         List<ExerciseAdapterModel> exerciseAdapterModels = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
@@ -71,6 +72,7 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
         return exerciseAdapterModels;
     }
 
+    //TODO: fix "double-title"-issue, make edittextfield underlying line light green
     private void showExerciseAddDialog() {
         if (mView != null) {
             AlertDialog.Builder builder;
@@ -79,9 +81,9 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
                         getActivity(), android.R.style.Theme_Material_Light_Dialog_Alert);
             } else {
                 builder = new AlertDialog.Builder(
-                        getActivity(), android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth);
+                        getActivity(), android.R.style.Theme_Holo_Light_Dialog/*DeviceDefault_Light_Dialog_MinWidth*/);
             }
-            builder.setTitle("Neue Übung");
+//            builder.setTitle("Neue Übung");
             builder.setView(getActivity().getLayoutInflater().inflate(
                     R.layout.fragment_training_exerciselist_dialog, null))
                 .setPositiveButton("Speichern", new DialogInterface.OnClickListener() {
@@ -99,7 +101,7 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
                     }
                 });
             Dialog dialog = builder.create();
-//            dialog.setTitle("Neue Übung");
+            dialog.setTitle("Neue Übung");
             dialog.show();
             //claiming divider color is only possible to change programmatically
             int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
@@ -114,6 +116,7 @@ public class TrainingFragmentExerciseList extends Fragment implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fragment_training_exerciselist_floatingactionbutton:
+                //TODO: instead of showing a dialog, we want to show a overview to choose the kind of exercise from
                 showExerciseAddDialog();
                 break;
             default:
